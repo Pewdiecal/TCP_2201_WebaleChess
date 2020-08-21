@@ -6,7 +6,7 @@ public class ChessCollection implements Chess {
     public void addChess(ChessPiece chessPiece) {
         chessPieces.add(chessPiece);
     }
-
+    asdasdas
     public ChessPiece getChessPiece() {
 
     }
