@@ -9,7 +9,7 @@ public class Triangle extends ChessPiece {
     }
 
     public void transform() {
-        //asdasdasdadas
+        //asdasdasdadas :D
     }
 
 }
