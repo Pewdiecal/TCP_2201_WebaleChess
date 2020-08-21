@@ -7,6 +7,7 @@ public class ChessCollection implements Chess {
         chessPieces.add(chessPiece);
     }
     asdasdas
+    asdasdasd
     public ChessPiece getChessPiece() {
 
     }
