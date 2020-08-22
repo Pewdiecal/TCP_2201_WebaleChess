@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
-public class ChessPiece implements Chess {
+public class ChessPiece implements Chess, Observable {
     private int chessPositionX;
     private int chessPositionY;
     private String chessName;
+    private String chessImg;
     private boolean isOnBoard;
     private Player chessOwner;
     private ArrayList<int[]> possibleMovesArray = new ArrayList<>();
@@ -54,6 +55,21 @@ public class ChessPiece implements Chess {
 
     @Override
     public void flipPosition() {
+
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+
+    }
+
+    @Override
+    public void notifyObserver() {
 
     }
 }

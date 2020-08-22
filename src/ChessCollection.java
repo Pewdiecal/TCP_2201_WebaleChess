@@ -8,7 +8,7 @@ public class ChessCollection implements Chess {
     }
 
     public ChessPiece getChessPiece() {
-
+        return null;
     }
 
     @Override

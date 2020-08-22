@@ -1,4 +1,4 @@
-public class Board {
+public class Board implements Observer {
     private int[][] boardGridSize;
     private ChessCollection chessList;
 
@@ -24,5 +24,10 @@ public class Board {
 
     public void initChessCollection() {
         this.chessList = new ChessCollection();
+    }
+
+    @Override
+    public void onChessMove() {
+
     }
 }
