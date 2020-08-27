@@ -3,8 +3,9 @@ public class Player {
     private boolean isPlayerTurn;
     private String playerName;
 
-    Player() {
-
+    Player(String playerName, int playerID) {
+        this.playerName = playerName;
+        this.playerID = playerID;
     }
 
     public String getPlayerName() {
@@ -15,11 +16,11 @@ public class Player {
         isPlayerTurn = playerTurn;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
     public boolean getPlayerTurn() {
         return this.isPlayerTurn;
+    }
+
+    public int getPlayerID() {
+        return playerID;
     }
 }
