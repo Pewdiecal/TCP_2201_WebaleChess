@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ChessPiece implements Chess, Observable {
+abstract class ChessPiece implements Chess, Observable {
     private int chessPositionX;
     private int chessPositionY;
     private final String chessName;
@@ -99,6 +99,8 @@ public class ChessPiece implements Chess, Observable {
     public ArrayList<int[]> getPossibleMovesArray() {
         return this.possibleMovesArray;
     }
+
+    public abstract ArrayList<int[]> setPossibleMoves();
 
     @Override
     public void flipPosition() {
