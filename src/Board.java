@@ -2,6 +2,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+
 public class Board implements Observer {
 
     private ChessCollection chessList;
@@ -85,22 +86,38 @@ public class Board implements Observer {
     //move the chess position fromX, fromY to toX, toY
     //this is called from my controller to move the chess
     //use the fromX, fromY coordinates to determine what chess is at that coordinate
+    //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
     public void moveChess(int fromX, int fromY, int toX, int toY) {
-
+        for (ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
+            if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
+                //Confirm is the chess piece we want
+                if(chessPiece.setPossibleMoves().contains(/**smtg**/) {
+                    chessPiece.setChessPosition(toX, toY);
+                }
+            }
+        }
     }
 
     //When a chess move is successful, this will get called
     @Override
     public void onChessMove() {
+        chessList.flipPosition();
         //here u need to flip the whole board by calling chessCollection's flipPosition() method
         //u need to change the players turn as well
+        for(int i = 0; i < players.length; i++){
+            players[i].setPlayerTurn(!players[i].getPlayerTurn());
+        }
     }
 
+    //DONE
     //create and assign each player to both side of the chess
     public void addPlayer(String playerName) { //players turn needs to be set bfore calling reloadNewState << solve this
-        for (int i = 0; i < players.length; i++) {
+        for(int i = 0; i < players.length; i++) {
             if (players[i] == null) {
                 players[i] = new Player(playerName, i + 1);
+                if(i == 0){
+                    players[i].setPlayerTurn(true); // Player 1 is assigned Turn 1
+                }
             }
         }
     }
@@ -124,7 +141,8 @@ public class Board implements Observer {
     //return the lists of possible move to my controller so that i can show the green boxes
     //use the x,y coordinates to get that chess's possible move
     //since ur passing in arraylist, convert the arraylist by using toArray() to plain array bfore return it to me
-    public int[][] getPossibleMoves(int x, int y) {
+    //Transfer info from Chess to Controller
+    public int[][] getPossibleMoves(int fromX, int fromY) {
         //call setPossibleMoves() for each instances u found
         return new int[][]{{0, 0}, {0, 1}, {0, 2}};//this is just dummy data, replace this with ur actual data
     }
