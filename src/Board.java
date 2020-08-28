@@ -83,6 +83,7 @@ public class Board implements Observer {
         }
     }
 
+    //DONE
     //move the chess position fromX, fromY to toX, toY
     //this is called from my controller to move the chess
     //use the fromX, fromY coordinates to determine what chess is at that coordinate
@@ -91,8 +92,10 @@ public class Board implements Observer {
         for (ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
             if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
                 //Confirm is the chess piece we want
-                if(chessPiece.setPossibleMoves().contains(/**smtg**/) {
-                    chessPiece.setChessPosition(toX, toY);
+                for(int[] elements:getPossibleMoves(fromX, fromY)){
+                    if(elements[0] == toX && elements[1] == toY){
+                        chessPiece.setChessPosition(toX, toY);
+                    }
                 }
             }
         }
@@ -138,12 +141,18 @@ public class Board implements Observer {
         return null;
     }
 
+    //DONE
     //return the lists of possible move to my controller so that i can show the green boxes
     //use the x,y coordinates to get that chess's possible move
     //since ur passing in arraylist, convert the arraylist by using toArray() to plain array bfore return it to me
     //Transfer info from Chess to Controller
     public int[][] getPossibleMoves(int fromX, int fromY) {
-        //call setPossibleMoves() for each instances u found
-        return new int[][]{{0, 0}, {0, 1}, {0, 2}};//this is just dummy data, replace this with ur actual data
+        int[][] possibleMoves = null;
+        for (ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
+            if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
+                //Confirm is the chess piece we want
+                return chessPiece.setPossibleMoves().toArray(possibleMoves);
+            }
+        }
     }
 }
