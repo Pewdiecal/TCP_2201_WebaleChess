@@ -100,7 +100,7 @@ abstract class ChessPiece implements Chess, Observable {
         return this.possibleMovesArray;
     }
 
-    public abstract ArrayList<int[]> setPossibleMoves();
+    public abstract ArrayList<int[][]> setPossibleMoves();
 
     @Override
     public void flipPosition() {
