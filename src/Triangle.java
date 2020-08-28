@@ -8,8 +8,8 @@ public class Triangle extends ChessPiece {
     }
 
     @Override
-    public ArrayList<int[]> getPossibleMovesArray() {
-        return super.getPossibleMovesArray();
+    public ArrayList<int[]> setPossibleMoves() {
+        return null;
     }
 
     public void transform() {

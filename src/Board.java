@@ -125,6 +125,7 @@ public class Board implements Observer {
     //use the x,y coordinates to get that chess's possible move
     //since ur passing in arraylist, convert the arraylist by using toArray() to plain array bfore return it to me
     public int[][] getPossibleMoves(int x, int y) {
+        //call setPossibleMoves() for each instances u found
         return new int[][]{{0, 0}, {0, 1}, {0, 2}};//this is just dummy data, replace this with ur actual data
     }
 }
