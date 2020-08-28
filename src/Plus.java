@@ -8,7 +8,7 @@ public class Plus extends ChessPiece {
     }
 
     @Override
-    public ArrayList<int[][]> setPossibleMoves() {
+    public ArrayList<int[]> setPossibleMoves() {
         return null;
     }
 
