@@ -13,13 +13,15 @@ public class Board implements Observer {
         this.chessList = new ChessCollection();
     }
 
-    //save the current state of the game <<<< this part is done
+    //DONE
+    //save the current state of the game
     public void saveState() throws IOException {
         fileManager = new FileManager(chessList);
         fileManager.writeToFile();
     }
 
-    //Load the saved game file from directory <<<<< this part is done
+    //DONE
+    //Load the saved game file from directory
     public void loadState() throws FileNotFoundException { //players turn needs to be set asap
         fileManager = new FileManager();
         chessList = fileManager.loadSavedFile();
@@ -31,6 +33,7 @@ public class Board implements Observer {
         }
     }
 
+    //DONE
     //Fresh start a game
     //We need another color of img to represent the opponent cuz we only hav blue
     //import the img assets into the image directory
@@ -101,20 +104,21 @@ public class Board implements Observer {
         }
     }
 
+    //DONE
     //When a chess move is successful, this will get called
     @Override
     public void onChessMove() {
         chessList.flipPosition();
         //here u need to flip the whole board by calling chessCollection's flipPosition() method
         //u need to change the players turn as well
-        for(int i = 0; i < players.length; i++){
-            players[i].setPlayerTurn(!players[i].getPlayerTurn());
+        for (Player player : players) {
+            player.setPlayerTurn(!player.getPlayerTurn());
         }
     }
 
     //DONE
     //create and assign each player to both side of the chess
-    public void addPlayer(String playerName) { //players turn needs to be set bfore calling reloadNewState << solve this
+    public void addPlayer(String playerName) { //players turn needs to be set before calling reloadNewState << solve this
         for(int i = 0; i < players.length; i++) {
             if (players[i] == null) {
                 players[i] = new Player(playerName, i + 1);
@@ -125,12 +129,19 @@ public class Board implements Observer {
         }
     }
 
+    //DONE
     //return back the current player's turn name
     //i will call this method from my controller class, u just need to provide the implementation below
     public String getCurrentPlayerName() {
-        return "";
+        for (Player player : players) {
+            if (player.getPlayerTurn()) {
+                return player.getPlayerName();
+            }
+        }
+        return null;
     }
 
+    //DONE
     //return the actual img of the chess to be displayed on the JButton <<< its done
     public BufferedImage getChessPieceImg(int x, int y) {
         for (ChessPiece chessPiece : chessList.getChessPiece()) {
@@ -144,7 +155,7 @@ public class Board implements Observer {
     //DONE
     //return the lists of possible move to my controller so that i can show the green boxes
     //use the x,y coordinates to get that chess's possible move
-    //since ur passing in arraylist, convert the arraylist by using toArray() to plain array bfore return it to me
+    //since ur passing in arraylist, convert the arraylist by using toArray() to plain array before return it to me
     //Transfer info from Chess to Controller
     public int[][] getPossibleMoves(int fromX, int fromY) {
         int[][] possibleMoves = null;
@@ -154,5 +165,6 @@ public class Board implements Observer {
                 return chessPiece.setPossibleMoves().toArray(possibleMoves);
             }
         }
+        return null;
     }
 }
