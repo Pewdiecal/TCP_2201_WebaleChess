@@ -6,7 +6,7 @@ public class Arrow extends ChessPiece {
     }
 
     @Override
-    public ArrayList<int[][]> setPossibleMoves() {
+    public ArrayList<int[]> setPossibleMoves() {
         int x = getChessPositionX();
         int y = getChessPositionY();
 
