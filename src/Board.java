@@ -43,45 +43,45 @@ public class Board implements Observer {
     public void reloadNewState() {
         //optimize this part of the code if u want to
         for (int arrow = 0; arrow < 8; arrow += 2) {
-            chessList.addChess(new Arrow("Arrow", "image/ArrowPiece.png", arrow,
+            chessList.addChess(new Arrow("Arrow", "image/BlueArrow.png", arrow,
                     1, players[1]));
         }
         for (int arrow = 0; arrow < 8; arrow += 2) {
-            chessList.addChess(new Arrow("Arrow", "image/ArrowPiece.png", arrow,
+            chessList.addChess(new Arrow("Arrow", "image/RedArrow.png", arrow,
                     6, players[0]));
         }
 
         for (int sun = 0; sun < 2; sun++) {
-            chessList.addChess(new Sun("Sun", "image/SunPiece.png", 3, 0, players[1]));
-            chessList.addChess(new Sun("Sun", "image/SunPiece.png", 3, 7, players[0]));
+            chessList.addChess(new Sun("Sun", "image/BlueSun.png", 3, 0, players[1]));
+            chessList.addChess(new Sun("Sun", "image/RedSun.png", 3, 7, players[0]));
         }
 
         for (int plus = 0; plus < 4; plus++) {
-            chessList.addChess(new Plus("Plus", "image/CrossPiece.png", 0, 0, players[1]));
-            chessList.addChess(new Plus("Plus", "image/CrossPiece.png", 6, 0, players[1]));
-            chessList.addChess(new Plus("Plus", "image/CrossPiece.png", 0, 7, players[0]));
-            chessList.addChess(new Plus("Plus", "image/CrossPiece.png", 6, 7, players[0]));
+            chessList.addChess(new Plus("Plus", "image/BluePlus.png", 0, 0, players[1]));
+            chessList.addChess(new Plus("Plus", "image/BluePlus.png", 6, 0, players[1]));
+            chessList.addChess(new Plus("Plus", "image/RedPlus.png", 0, 7, players[0]));
+            chessList.addChess(new Plus("Plus", "image/RedPlus.png", 6, 7, players[0]));
         }
 
         for (int triangle = 0; triangle < 4; triangle++) {
-            chessList.addChess(new Triangle("Triangle", "image/TrianglePiece.png", 1,
+            chessList.addChess(new Triangle("Triangle", "image/BlueTriangle.png", 1,
                     0, players[1]));
-            chessList.addChess(new Triangle("Triangle", "image/TrianglePiece.png", 5,
+            chessList.addChess(new Triangle("Triangle", "image/BlueTriangle.png", 5,
                     0, players[1]));
-            chessList.addChess(new Triangle("Triangle", "image/TrianglePiece.png", 1,
+            chessList.addChess(new Triangle("Triangle", "image/RedTriangle.png", 1,
                     7, players[0]));
-            chessList.addChess(new Triangle("Triangle", "image/TrianglePiece.png", 5,
+            chessList.addChess(new Triangle("Triangle", "image/RedTriangle.png", 5,
                     7, players[0]));
         }
 
         for (int chevron = 0; chevron < 4; chevron++) {
-            chessList.addChess(new Chevron("Chevron", "image/ChevronPiece.png", 2,
+            chessList.addChess(new Chevron("Chevron", "image/BlueChevron.png", 2,
                     0, players[1]));
-            chessList.addChess(new Chevron("Chevron", "image/ChevronPiece.png", 4,
+            chessList.addChess(new Chevron("Chevron", "image/BlueChevron.png", 4,
                     0, players[1]));
-            chessList.addChess(new Chevron("Chevron", "image/ChevronPiece.png", 2,
+            chessList.addChess(new Chevron("Chevron", "image/RedChevron.png", 2,
                     7, players[0]));
-            chessList.addChess(new Chevron("Chevron", "image/ChevronPiece.png", 4,
+            chessList.addChess(new Chevron("Chevron", "image/RedChevron.png", 4,
                     7, players[0]));
         }
     }
