@@ -12,6 +12,7 @@ abstract class ChessPiece implements Chess, Observable {
     private String chessImgPath;
     private transient BufferedImage bufferedImage;
     private boolean isOnBoard = true;
+    private boolean arrowRotation = true;
     private Player chessOwner;
     private final ArrayList<int[][]> possibleMovesArray = new ArrayList<>();
 
@@ -41,6 +42,10 @@ abstract class ChessPiece implements Chess, Observable {
         return this.chessPositionY;
     }
 
+    public boolean getArrowRotation() {
+        return this.arrowRotation;
+    }
+
     public String getChessName() {
         return this.chessName;
     }
@@ -64,6 +69,9 @@ abstract class ChessPiece implements Chess, Observable {
     public void setChessPosition(int x, int y) {
         this.chessPositionX = x;
         this.chessPositionY = y;
+        if(y == 7) {
+            this.arrowRotation = false;
+        }
     }
 
     public void setChessImage(String imgPath) {
