@@ -97,7 +97,7 @@ public class Controller {
         return board.getCurrentPlayerName();
     }
 
-    public int[][] getPossibleMoves(int finalI, int finalW) {
-        return board.getPossibleMoves(finalI, finalW);
+    public int[][] getPossibleMoves(int x, int y) {
+        return board.getPossibleMoves(x, y);
     }
 }

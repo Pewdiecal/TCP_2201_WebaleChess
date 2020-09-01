@@ -14,7 +14,7 @@ abstract class ChessPiece implements Chess, Observable {
     private boolean isOnBoard = true;
     private boolean arrowRotation = true;
     private Player chessOwner;
-    private final ArrayList<int[][]> possibleMovesArray = new ArrayList<>();
+    private final ArrayList<int[]> possibleMovesArray = new ArrayList<>();
 
     ChessPiece(String chessName, String chessImgPath, int chessPositionX, int chessPositionY, Player chessOwner) {
         this.chessName = chessName;
@@ -104,11 +104,11 @@ abstract class ChessPiece implements Chess, Observable {
         return this.chessImgPath;
     }
 
-    public ArrayList<int[][]> getPossibleMovesArray() {
+    public ArrayList<int[]> getPossibleMovesArray() {
         return this.possibleMovesArray;
     }
 
-    public abstract ArrayList<int[]> setPossibleMoves();
+    public abstract ArrayList<int[]> generatePossibleMoves();
 
     @Override
     public void flipPosition() {
