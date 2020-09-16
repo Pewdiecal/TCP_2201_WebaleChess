@@ -15,12 +15,12 @@ public class Chevron extends ChessPiece {
                 if(Math.abs(i) == 2 ^ Math.abs(j) == 2) {
                     if (i != 0 && j != 0) {
                         if(((x + i <= 7) && (x + i >= 0)) && ((y + j <= 8) && (y + j >= 0))) {
-                            super.getPossibleMovesArray().add(new int[][]{{x + i, y + j}});
+                            super.getPossibleMovesArray().add(new int[]{x + i, y + j});
                         }
                     }
                 }
             }
         }
-        return null;
+        return getPossibleMovesArray();
     }
 }

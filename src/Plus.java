@@ -15,20 +15,20 @@ public class Plus extends ChessPiece {
         //for up-down direction
         for (int i = 0; i < 8; i++) {
             if(i != y) {
-                super.getPossibleMovesArray().add(new int[][]{{x, i}});
+                super.getPossibleMovesArray().add(new int[]{x, i});
             }
         }
 
         //for left-right direction
         for (int i = 0; i < 7; i++) {
             if(i != x) {
-                super.getPossibleMovesArray().add(new int[][]{{i, y}});
+                super.getPossibleMovesArray().add(new int[]{i, y});
             }
         }
-        return null;
+        return getPossibleMovesArray();
     }
 
     public void transform() {
-
+        //image/BlueArrow.png path from content root
     }
 }
