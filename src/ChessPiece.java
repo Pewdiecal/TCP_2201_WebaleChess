@@ -129,15 +129,28 @@ public class ChessPiece implements Chess, Observable {
 
     //img rotation func << its done
     public void rotateImg() {
+
         int w = bufferedImage.getWidth();
         int h = bufferedImage.getHeight();
 
         BufferedImage rotated = new BufferedImage(w, h, bufferedImage.getType());
-        Graphics2D graphic = rotated.createGraphics();
-        graphic.rotate(Math.toRadians(180), w / 2, h / 2);
-        graphic.drawImage(bufferedImage, null, 0, 0);
-        graphic.dispose();
+
+        if(!chessImgPath.contains("Rev")){ //If the image is not rotated
+            chessImgPath = chessImgPath.substring(0, chessImgPath.length()-4) + "Rev.png";
+        }
+        else{ //If the image is rotated
+            chessImgPath = chessImgPath.substring(0, chessImgPath.length()-7) + ".png";
+        }
+        System.out.print(chessImgPath + "\n");
+
+        try {
+            rotated = ImageIO.read(new File(chessImgPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         bufferedImage = rotated;
+
     }
 
     public String getImgPath() {
