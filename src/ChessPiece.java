@@ -77,31 +77,34 @@ public class ChessPiece implements Chess, Observable {
         ArrayList<ChessPiece> temp = new ArrayList<>();
         accumulator++;
         if (accumulator % 4 == 0) {
-            for (ChessPiece chessPiece : board.getChessList().getChessPiece()) {
+            for (ChessPiece chessPiece : board.getChessList().getChessPiece()) { //while we're accessing board.getChessList().getChessPiece()
+                //board.getChessList().getChessPiece().remove(chessPiece); cannot be removed, cuz mutex lock
 
-                int positionX = chessPiece.getChessPositionX();
-                int positionY = chessPiece.getChessPositionY();
-                Player player = chessPiece.getChessOwner();
+            }
+            for (int i = 0; i < board.getChessList().getChessPiece().size() - 1; i++) {
 
-                switch (chessPiece.getChessName()) {
+                int positionX = board.getChessList().getChessPiece().get(i).getChessPositionX();
+                int positionY = board.getChessList().getChessPiece().get(i).getChessPositionY();
+                Player player = board.getChessList().getChessPiece().get(i).getChessOwner();
+
+                switch (board.getChessList().getChessPiece().get(i).getChessName()) {
                     case "Blue Triangle":
-                        board.getChessList().getChessPiece().remove(chessPiece);
+                        board.getChessList().getChessPiece().remove(board.getChessList().getChessPiece().get(i));
                         temp.add(new Plus("Blue Plus", "image/BluePlus.png", positionX, positionY, player));
                         break;
                     case "Blue Plus":
-                        board.getChessList().getChessPiece().remove(chessPiece);
+                        board.getChessList().getChessPiece().remove(board.getChessList().getChessPiece().get(i));
                         temp.add(new Triangle("Blue Triangle", "image/BlueTriangle.png", positionX, positionY, player));
                         break;
                     case "Red Triangle":
-                        board.getChessList().getChessPiece().remove(chessPiece);
+                        board.getChessList().getChessPiece().remove(board.getChessList().getChessPiece().get(i));
                         temp.add(new Plus("Red Plus", "image/RedPlus.png", positionX, positionY, player));
                         break;
                     case "Red Plus":
-                        board.getChessList().getChessPiece().remove(chessPiece);
+                        board.getChessList().getChessPiece().remove(board.getChessList().getChessPiece().get(i));
                         temp.add(new Triangle("Red Triangle", "image/RedTriangle.png", positionX, positionY, player));
                         break;
                 }
-
             }
             board.getChessList().getChessPiece().addAll(temp);
         }

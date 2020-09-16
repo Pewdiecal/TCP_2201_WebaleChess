@@ -13,7 +13,7 @@ public class FileManager {
     }
 
     FileManager() {
-
+        this.chessCollection = new ChessCollection();
     }
 
     public void writeToFile() throws IOException {
@@ -27,7 +27,7 @@ public class FileManager {
         if (!Files.exists(path)) {
             file.mkdir();
         }
-        FileOutputStream outputStream = null;
+        FileOutputStream outputStream;
         outputStream = new FileOutputStream("savedGameFile/savedProgress.txt");
 
         byte[] strToBytes = json.getBytes();
