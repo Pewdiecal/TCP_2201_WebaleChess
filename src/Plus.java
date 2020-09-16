@@ -29,8 +29,4 @@ public class Plus extends ChessPiece {
         }
         return super.getPossibleMovesArray();
     }
-
-    public void transform() {
-
-    }
 }

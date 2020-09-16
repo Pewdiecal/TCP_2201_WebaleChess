@@ -5,7 +5,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-abstract class ChessPiece implements Chess, Observable {
+public class ChessPiece implements Chess, Observable {
+    private static int accumulator;
+
+    public Board getBoard() {
+        return board;
+    }
+
+    private final Board board = Board.getInstance();
     private int chessPositionX;
     private int chessPositionY;
     private final String chessName;
@@ -67,12 +74,42 @@ abstract class ChessPiece implements Chess, Observable {
     }
 
     public void setChessPosition(int x, int y) {
+        ArrayList<ChessPiece> temp = new ArrayList<>();
+        accumulator++;
+        if (accumulator % 4 == 0) {
+            for (ChessPiece chessPiece : board.getChessList().getChessPiece()) {
+
+                int positionX = chessPiece.getChessPositionX();
+                int positionY = chessPiece.getChessPositionY();
+                Player player = chessPiece.getChessOwner();
+
+                switch (chessPiece.getChessName()) {
+                    case "Blue Triangle":
+                        board.getChessList().getChessPiece().remove(chessPiece);
+                        temp.add(new Plus("Blue Plus", "image/BluePlus.png", positionX, positionY, player));
+                        break;
+                    case "Blue Plus":
+                        board.getChessList().getChessPiece().remove(chessPiece);
+                        temp.add(new Triangle("Blue Triangle", "image/BlueTriangle.png", positionX, positionY, player));
+                        break;
+                    case "Red Triangle":
+                        board.getChessList().getChessPiece().remove(chessPiece);
+                        temp.add(new Plus("Red Plus", "image/RedPlus.png", positionX, positionY, player));
+                        break;
+                    case "Red Plus":
+                        board.getChessList().getChessPiece().remove(chessPiece);
+                        temp.add(new Triangle("Red Triangle", "image/RedTriangle.png", positionX, positionY, player));
+                        break;
+                }
+
+            }
+            board.getChessList().getChessPiece().addAll(temp);
+        }
         this.chessPositionX = x;
         this.chessPositionY = y;
-        if(y == 7) {
+        if (y == 7) {
             this.arrowRotation = false;
-        }
-        else if(y == 0) {
+        } else if (y == 0) {
             this.arrowRotation = true;
         }
     }
@@ -111,7 +148,9 @@ abstract class ChessPiece implements Chess, Observable {
         return this.possibleMovesArray;
     }
 
-    public abstract ArrayList<int[]> generatePossibleMoves();
+    public ArrayList<int[]> generatePossibleMoves() {
+        return null;
+    }
 
     @Override
     public void flipPosition() {

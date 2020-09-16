@@ -8,7 +8,7 @@ public class Controller {
 
     MainUI mainUI;
     JFrame viewHolder;
-    Board board = new Board();
+    Board board = Board.getInstance();
     int[][] currentSelectedPosition = {{-1, -1}};
     JButton[][] chessHolder;
 

@@ -13,40 +13,98 @@ public class Sun extends ChessPiece {
 
         super.getPossibleMovesArray().clear();
 
-
         // move up down left right
         if (y - 1 >= 0) {
-            super.getPossibleMovesArray().add(new int[]{x, y - 1});
-            // algorithm to not eat teammates
+            int[] tempRef = new int[]{x, y - 1};
+            super.getPossibleMovesArray().add(tempRef);
+            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                if (chessPiece.getChessPositionX() == x
+                        && chessPiece.getChessPositionY() == y - 1
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
+                    super.getPossibleMovesArray().remove(tempRef);
+                }
+            }
+
         }
         if (y + 1 <= 7) {
-            super.getPossibleMovesArray().add(new int[]{x, y + 1});
-            // algorithm to not eat teammates
+            int[] tempRef = new int[]{x, y + 1};
+            super.getPossibleMovesArray().add(tempRef);
+            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                if (chessPiece.getChessPositionX() == x
+                        && chessPiece.getChessPositionY() == y + 1
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
+                    super.getPossibleMovesArray().remove(tempRef);
+                }
+            }
         }
         if (x - 1 >= 0) {
-            super.getPossibleMovesArray().add(new int[]{x - 1, y});
-            // algorithm to not eat teammates
+            int[] tempRef = new int[]{x - 1, y};
+            super.getPossibleMovesArray().add(tempRef);
+            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                if (chessPiece.getChessPositionX() == x - 1
+                        && chessPiece.getChessPositionY() == y
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
+                    super.getPossibleMovesArray().remove(tempRef);
+                }
+            }
         }
         if (x + 1 <= 6) {
-            super.getPossibleMovesArray().add(new int[]{x + 1, y});
-            // algorithm to not eat teammates
+            int[] tempRef = new int[]{x + 1, y};
+            super.getPossibleMovesArray().add(tempRef);
+            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                if (chessPiece.getChessPositionX() == x + 1
+                        && chessPiece.getChessPositionY() == y
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
+                    super.getPossibleMovesArray().remove(tempRef);
+                }
+            }
         }
 
         // move vertically
-        if (x + 1 <= 6 && y - 1 >= 0){
-            super.getPossibleMovesArray().add(new int[]{x + 1, y - 1});
+        if (x + 1 <= 6 && y - 1 >= 0) {
+            int[] tempRef = new int[]{x + 1, y - 1};
+            super.getPossibleMovesArray().add(tempRef);
+            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                if (chessPiece.getChessPositionX() == x + 1
+                        && chessPiece.getChessPositionY() == y - 1
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
+                    super.getPossibleMovesArray().remove(tempRef);
+                }
+            }
         }
-        if (x + 1 <= 6 && y + 1 <= 7){
-            super.getPossibleMovesArray().add(new int[]{x + 1, y + 1});
+        if (x + 1 <= 6 && y + 1 <= 7) {
+            int[] tempRef = new int[]{x + 1, y + 1};
+            super.getPossibleMovesArray().add(tempRef);
+            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                if (chessPiece.getChessPositionX() == x + 1
+                        && chessPiece.getChessPositionY() == y + 1
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
+                    super.getPossibleMovesArray().remove(tempRef);
+                }
+            }
         }
-        if (x - 1 >= 0 && y - 1 >= 0){
-            super.getPossibleMovesArray().add(new int[]{x - 1, y - 1});
+        if (x - 1 >= 0 && y - 1 >= 0) {
+            int[] tempRef = new int[]{x - 1, y - 1};
+            super.getPossibleMovesArray().add(tempRef);
+            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                if (chessPiece.getChessPositionX() == x - 1
+                        && chessPiece.getChessPositionY() == y - 1
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
+                    super.getPossibleMovesArray().remove(tempRef);
+                }
+            }
         }
-        if (x - 1 >= 0 && y + 1 <= 7){
-            super.getPossibleMovesArray().add(new int[]{x - 1, y + 1});
+        if (x - 1 >= 0 && y + 1 <= 7) {
+            int[] tempRef = new int[]{x - 1, y + 1};
+            super.getPossibleMovesArray().add(tempRef);
+            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                if (chessPiece.getChessPositionX() == x - 1
+                        && chessPiece.getChessPositionY() == y + 1
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
+                    super.getPossibleMovesArray().remove(tempRef);
+                }
+            }
         }
-
-
         return super.getPossibleMovesArray();
     }
 }

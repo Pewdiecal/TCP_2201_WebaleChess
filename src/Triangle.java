@@ -51,7 +51,4 @@ public class Triangle extends ChessPiece {
         return super.getPossibleMovesArray();
     }
 
-    public void transform() {
-
-    }
 }
