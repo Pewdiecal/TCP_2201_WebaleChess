@@ -8,13 +8,13 @@ public class Plus extends ChessPiece {
     }
 
     @Override
-    public ArrayList<int[]> setPossibleMoves() {
+    public ArrayList<int[]> generatePossibleMoves() {
         int x = getChessPositionX();
         int y = getChessPositionY();
 
         //for up-down direction
         for (int i = 0; i < 8; i++) {
-            if(i != y) {
+            if (i != y) {
                 super.getPossibleMovesArray().add(new int[]{x, i});
             }
         }
@@ -25,10 +25,10 @@ public class Plus extends ChessPiece {
                 super.getPossibleMovesArray().add(new int[]{i, y});
             }
         }
-        return getPossibleMovesArray();
+        return super.getPossibleMovesArray();
     }
 
     public void transform() {
-        //image/BlueArrow.png path from content root
+
     }
 }

@@ -158,13 +158,13 @@ public class Board implements Observer {
     //since ur passing in arraylist, convert the arraylist by using toArray() to plain array before return it to me
     //Transfer info from Chess to Controller
     public int[][] getPossibleMoves(int fromX, int fromY) {
-        int[][] possibleMoves = new int[][]{{}};
+        int[][] possibleMoves = new int[0][];
         for (ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
             if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
                 //Confirm is the chess piece we want
-                return chessPiece.setPossibleMoves().toArray(possibleMoves);
+                return chessPiece.generatePossibleMoves().toArray(possibleMoves);
             }
         }
-        return null;
+        return possibleMoves;
     }
 }

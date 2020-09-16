@@ -6,19 +6,18 @@ public class Arrow extends ChessPiece {
     }
 
     @Override
-    public ArrayList<int[]> setPossibleMoves() {
+    public ArrayList<int[]> generatePossibleMoves() {
         int x = getChessPositionX();
         int y = getChessPositionY();
 
-        if(y == 7 && getArrowRotation() == false) {
+        if (y == 7 && getArrowRotation() == false) {
             //rotate
             super.getPossibleMovesArray().add(new int[]{x, y - 1});
             super.getPossibleMovesArray().add(new int[]{x, y - 2});
-        }
-        else if(y == 1 && getArrowRotation() == false) {
+        } else if (y == 1 && getArrowRotation() == false) {
             super.getPossibleMovesArray().add(new int[]{x, y - 1});
         }
-        else if(getArrowRotation() == false){
+        else if(getArrowRotation() == false) {
             super.getPossibleMovesArray().add(new int[]{x, y - 1});
             super.getPossibleMovesArray().add(new int[]{x, y - 2});
         }
@@ -26,15 +25,14 @@ public class Arrow extends ChessPiece {
             //rotate
             super.getPossibleMovesArray().add(new int[]{x, y + 1});
             super.getPossibleMovesArray().add(new int[]{x, y + 2});
-        }
-        else if(y == 6 && getArrowRotation() == true) {
+        } else if (y == 6 && getArrowRotation() == true) {
             super.getPossibleMovesArray().add(new int[]{x, y + 1});
-        }
-        else if(getArrowRotation() == true){
+        } else if (getArrowRotation() == true) {
             super.getPossibleMovesArray().add(new int[]{x, y + 1});
             super.getPossibleMovesArray().add(new int[]{x, y + 2});
         }
-        return getPossibleMovesArray();
+        return super.getPossibleMovesArray();
+
     }
 
 }

@@ -8,7 +8,7 @@ public class Triangle extends ChessPiece {
     }
 
     @Override
-    public ArrayList<int[]> setPossibleMoves() {
+    public ArrayList<int[]> generatePossibleMoves() {
 
         int xUR = getChessPositionX() + 1;
         int yUR = getChessPositionX() + 1;
@@ -46,7 +46,7 @@ public class Triangle extends ChessPiece {
             xDR++;
             yDR--;
         }
-        return getPossibleMovesArray();
+        return super.getPossibleMovesArray();
     }
 
     public void transform() {

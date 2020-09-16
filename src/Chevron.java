@@ -6,21 +6,21 @@ public class Chevron extends ChessPiece {
     }
 
     @Override
-    public ArrayList<int[]> setPossibleMoves() {
+    public ArrayList<int[]> generatePossibleMoves() {
         int x = getChessPositionX();
         int y = getChessPositionY();
 
         for (int i = 2; i > -3; i--) {
             for (int j = 2; j > -3; j--) {
-                if(Math.abs(i) == 2 ^ Math.abs(j) == 2) {
+                if (Math.abs(i) == 2 ^ Math.abs(j) == 2) {
                     if (i != 0 && j != 0) {
-                        if(((x + i <= 7) && (x + i >= 0)) && ((y + j <= 8) && (y + j >= 0))) {
+                        if (((x + i <= 7) && (x + i >= 0)) && ((y + j <= 8) && (y + j >= 0))) {
                             super.getPossibleMovesArray().add(new int[]{x + i, y + j});
                         }
                     }
                 }
             }
         }
-        return getPossibleMovesArray();
+        return super.getPossibleMovesArray();
     }
 }

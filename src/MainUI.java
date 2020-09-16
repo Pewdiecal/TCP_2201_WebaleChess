@@ -118,19 +118,19 @@ public class MainUI {
                 chessHolder[i][w] = new JButton();
                 chessHolder[i][w].setMinimumSize(new Dimension(210, 210));
                 chessHolder[i][w].setBackground(new Color(204, 255, 255));
-                int finalW = w;
-                int finalI = i;
+                int finalX = w; //X
+                int finalY = i; //Y
                 chessHolder[i][w].addActionListener(e -> {
 
                     if (controller.getCurrentSelectedPosition()[0][0] == -1 ||
                             controller.getCurrentSelectedPosition()[0][1] == -1) {
-                        controller.setCurrentSelectedPosition(finalI, finalW);
-                        chessHolder[finalI][finalW].setBackground(new Color(153, 255, 153));
-                        for (int[] positions : controller.getPossibleMoves(finalI, finalW)) {
-                            chessHolder[positions[0]][positions[1]].setBackground(new Color(153, 255, 153));
+                        controller.setCurrentSelectedPosition(finalX, finalY);
+                        chessHolder[finalY][finalX].setBackground(new Color(153, 255, 153));
+                        for (int[] positions : controller.getPossibleMoves(finalX, finalY)) {
+                            chessHolder[positions[1]][positions[0]].setBackground(new Color(153, 255, 153));
                         }
                     } else {
-                        controller.setChessPosition(finalI, finalW);
+                        controller.setChessPosition(finalX, finalY);
                         userTurnName.setText("Current Turn : " + controller.getCurrentPlayerTurn());
                     }
 
@@ -150,8 +150,8 @@ public class MainUI {
                         } else {
                             size.height = -1;
                         }
-                        if (controller.getChessImg(finalW, finalI) != null) {
-                            Image scaled = controller.getChessImg(finalW, finalI)
+                        if (controller.getChessImg(finalX, finalY) != null) {
+                            Image scaled = controller.getChessImg(finalX, finalY)
                                     .getScaledInstance(size.width, size.height, java.awt.Image.SCALE_SMOOTH);
                             btn.setIcon(new ImageIcon(scaled));
                         } else {
