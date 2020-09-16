@@ -10,41 +10,43 @@ public class Triangle extends ChessPiece {
     @Override
     public ArrayList<int[]> generatePossibleMoves() {
 
-        int xUR = getChessPositionX() + 1;
-        int yUR = getChessPositionX() + 1;
-        int xDL = getChessPositionX() - 1;
-        int yDL = getChessPositionX() - 1;
-        int xUL = getChessPositionX() - 1;
-        int yUL = getChessPositionX() + 1;
         int xDR = getChessPositionX() + 1;
-        int yDR = getChessPositionX() - 1;
+        int yDR = getChessPositionY() + 1;
+        int xUL = getChessPositionX() - 1;
+        int yUL = getChessPositionY() - 1;
+        int xDL = getChessPositionX() - 1;
+        int yDL = getChessPositionY() + 1;
+        int xUR = getChessPositionX() + 1;
+        int yUR = getChessPositionY() - 1;
 
-        //Up-Right
-        while(xUR < 7 && yUR < 8) {
-            super.getPossibleMovesArray().add(new int[]{xUR, yUR});
-            xUR++;
-            yUR++;
-        }
+        super.getPossibleMovesArray().clear();
 
-        //Down-Left
-        while(xDL >= 0 && yDL >= 0) {
-            super.getPossibleMovesArray().add(new int[]{xDL, yDL});
-            xDL--;
-            yDL--;
+        //Down-Right
+        while(xDR < 7 && yDR < 8) {
+            super.getPossibleMovesArray().add(new int[]{xDR, yDR});
+            xDR++;
+            yDR++;
         }
 
         //Up-Left
-        while(xUL >= 0 && yUL < 8) {
+        while(xUL >= 0 && yUL >= 0) {
             super.getPossibleMovesArray().add(new int[]{xUL, yUL});
             xUL--;
-            yUL++;
+            yUL--;
         }
 
-        //Down-Right
-        while(xDR < 7 && yDR >= 0) {
-            super.getPossibleMovesArray().add(new int[]{xDR, yDR});
-            xDR++;
-            yDR--;
+        //Down-Left
+        while(xDL >= 0 && yDL < 8) {
+            super.getPossibleMovesArray().add(new int[]{xDL, yDL});
+            xDL--;
+            yDL++;
+        }
+
+        //Up-Right
+        while(xUR < 7 && yUR >= 0) {
+            super.getPossibleMovesArray().add(new int[]{xUR, yUR});
+            xUR++;
+            yUR--;
         }
         return super.getPossibleMovesArray();
     }

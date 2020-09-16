@@ -11,15 +11,42 @@ public class Sun extends ChessPiece {
         int x = getChessPositionX();
         int y = getChessPositionY();
 
-        for (int i = 1; i > -2; i--) {
-            for (int j = 1; j > -2; j--) {
-                if (!(i == 0 && j == 0)) {
-                    if (((x + i <= 7) && (x + i >= 0)) && ((y + j <= 8) && (y + j >= 0))) {
-                        super.getPossibleMovesArray().add(new int[]{x + i, y + j});
-                    }
-                }
-            }
+        super.getPossibleMovesArray().clear();
+
+
+        // move up down left right
+        if (y - 1 >= 0) {
+            super.getPossibleMovesArray().add(new int[]{x, y - 1});
+            // algorithm to not eat teammates
         }
+        if (y + 1 <= 7) {
+            super.getPossibleMovesArray().add(new int[]{x, y + 1});
+            // algorithm to not eat teammates
+        }
+        if (x - 1 >= 0) {
+            super.getPossibleMovesArray().add(new int[]{x - 1, y});
+            // algorithm to not eat teammates
+        }
+        if (x + 1 <= 6) {
+            super.getPossibleMovesArray().add(new int[]{x + 1, y});
+            // algorithm to not eat teammates
+        }
+
+        // move vertically
+        if (x + 1 <= 6 && y - 1 >= 0){
+            super.getPossibleMovesArray().add(new int[]{x + 1, y - 1});
+        }
+        if (x + 1 <= 6 && y + 1 <= 7){
+            super.getPossibleMovesArray().add(new int[]{x + 1, y + 1});
+        }
+        if (x - 1 >= 0 && y - 1 >= 0){
+            super.getPossibleMovesArray().add(new int[]{x - 1, y - 1});
+        }
+        if (x - 1 >= 0 && y + 1 <= 7){
+            super.getPossibleMovesArray().add(new int[]{x - 1, y + 1});
+        }
+
+
         return super.getPossibleMovesArray();
     }
 }

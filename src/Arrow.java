@@ -10,27 +10,27 @@ public class Arrow extends ChessPiece {
         int x = getChessPositionX();
         int y = getChessPositionY();
 
-        if (y == 7 && getArrowRotation() == false) {
-            //rotate
-            super.getPossibleMovesArray().add(new int[]{x, y - 1});
-            super.getPossibleMovesArray().add(new int[]{x, y - 2});
-        } else if (y == 1 && getArrowRotation() == false) {
-            super.getPossibleMovesArray().add(new int[]{x, y - 1});
+        super.getPossibleMovesArray().clear();
+
+        if(!getArrowRotation()) {
+            // moving 1 or 2 steps upwards
+            for (int i = 1; i < 3; i++) {
+                if (y - i >= 0) {
+                    super.getPossibleMovesArray().add(new int[]{x, y - i});
+                    // algorithm to not eat teammates
+                }
+            }
+        }else if (getArrowRotation()){
+            // moving 1 or 2 steps downwards if rotated
+            for (int i = 1; i<3; i++){
+                if(y + i <= 7){
+                    super.getPossibleMovesArray().add(new int[]{x, y + i});
+                    // algorithm to not eat teammates
+                }
+            }
         }
-        else if(getArrowRotation() == false) {
-            super.getPossibleMovesArray().add(new int[]{x, y - 1});
-            super.getPossibleMovesArray().add(new int[]{x, y - 2});
-        }
-        else if(y == 0 && getArrowRotation() == true) {
-            //rotate
-            super.getPossibleMovesArray().add(new int[]{x, y + 1});
-            super.getPossibleMovesArray().add(new int[]{x, y + 2});
-        } else if (y == 6 && getArrowRotation() == true) {
-            super.getPossibleMovesArray().add(new int[]{x, y + 1});
-        } else if (getArrowRotation() == true) {
-            super.getPossibleMovesArray().add(new int[]{x, y + 1});
-            super.getPossibleMovesArray().add(new int[]{x, y + 2});
-        }
+
+
         return super.getPossibleMovesArray();
 
     }

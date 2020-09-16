@@ -12,6 +12,8 @@ public class Plus extends ChessPiece {
         int x = getChessPositionX();
         int y = getChessPositionY();
 
+        super.getPossibleMovesArray().clear();
+
         //for up-down direction
         for (int i = 0; i < 8; i++) {
             if (i != y) {

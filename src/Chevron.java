@@ -10,17 +10,36 @@ public class Chevron extends ChessPiece {
         int x = getChessPositionX();
         int y = getChessPositionY();
 
-        for (int i = 2; i > -3; i--) {
-            for (int j = 2; j > -3; j--) {
-                if (Math.abs(i) == 2 ^ Math.abs(j) == 2) {
-                    if (i != 0 && j != 0) {
-                        if (((x + i <= 7) && (x + i >= 0)) && ((y + j <= 8) && (y + j >= 0))) {
-                            super.getPossibleMovesArray().add(new int[]{x + i, y + j});
-                        }
-                    }
-                }
-            }
+        super.getPossibleMovesArray().clear();
+
+        //algorithm to not eat teammates
+        if (x + 1 <= 6 && y - 2 >= 0){
+            super.getPossibleMovesArray().add(new int[]{x + 1, y - 2});
         }
+        if (x - 1 >= 0 && y - 2 >= 0){
+            super.getPossibleMovesArray().add(new int[]{x - 1, y - 2});
+        }
+        if (x + 1 <= 6 && y + 2 <= 7){
+            super.getPossibleMovesArray().add(new int[]{x + 1, y + 2});
+        }
+        if (x - 1 >= 0 && y + 2 <= 7){
+            super.getPossibleMovesArray().add(new int[]{x - 1, y + 2});
+        }
+        if (x + 2 <= 6 && y - 1 >= 0){
+            super.getPossibleMovesArray().add(new int[]{x + 2, y - 1});
+        }
+        if (x - 2 >= 0 && y - 1 >= 0){
+            super.getPossibleMovesArray().add(new int[]{x - 2, y - 1});
+        }
+        if (x + 2 <= 6 && y + 1 <= 7){
+            super.getPossibleMovesArray().add(new int[]{x + 2, y + 1});
+        }
+        if (x - 2 >= 0 && y + 1 <= 7){
+            super.getPossibleMovesArray().add(new int[]{x - 2, y + 1});
+        }
+
+
+
         return super.getPossibleMovesArray();
     }
 }
