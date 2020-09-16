@@ -14,8 +14,11 @@ public class Sun extends ChessPiece {
         super.getPossibleMovesArray().clear();
 
         // move up down left right
-        if (y - 1 >= 0) {
+
+        if (y - 1 >= 0) { //Move up
             int[] tempRef = new int[]{x, y - 1};
+
+            // allows moving to empty space & prevents eating own chess piece
             super.getPossibleMovesArray().add(tempRef);
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x
@@ -26,7 +29,7 @@ public class Sun extends ChessPiece {
             }
 
         }
-        if (y + 1 <= 7) {
+        if (y + 1 <= 7) { //Move down
             int[] tempRef = new int[]{x, y + 1};
             super.getPossibleMovesArray().add(tempRef);
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {

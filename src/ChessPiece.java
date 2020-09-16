@@ -141,7 +141,6 @@ public class ChessPiece implements Chess, Observable {
         else{ //If the image is rotated
             chessImgPath = chessImgPath.substring(0, chessImgPath.length()-7) + ".png";
         }
-        System.out.print(chessImgPath + "\n");
 
         try {
             rotated = ImageIO.read(new File(chessImgPath));
