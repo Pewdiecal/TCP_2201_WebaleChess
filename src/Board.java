@@ -186,6 +186,7 @@ public class Board implements Observer {
                     }
                 }
             }
+            onChessMove();
         }
     }
 
