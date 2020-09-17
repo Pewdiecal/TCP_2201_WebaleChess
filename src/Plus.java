@@ -37,6 +37,12 @@ public class Plus extends ChessPiece {
                     stopU = true;
                     break;
                 }
+                else if (chessPiece.getChessPositionX() == x
+                        && chessPiece.getChessPositionY() == yU
+                        && chessPiece.getChessOwner() != super.getChessOwner()) {
+                    stopU = true;
+                    break;
+                }
             }
             yU--;
         }
@@ -52,6 +58,12 @@ public class Plus extends ChessPiece {
                         && chessPiece.getChessPositionY() == yD
                         && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
+                    stopD = true;
+                    break;
+                }
+                else if (chessPiece.getChessPositionX() == x
+                        && chessPiece.getChessPositionY() == yD
+                        && chessPiece.getChessOwner() != super.getChessOwner()) {
                     stopD = true;
                     break;
                 }
@@ -73,6 +85,12 @@ public class Plus extends ChessPiece {
                     stopR = true;
                     break;
                 }
+                else if (chessPiece.getChessPositionX() == xR
+                        && chessPiece.getChessPositionY() == y
+                        && chessPiece.getChessOwner() != super.getChessOwner()) {
+                    stopR = true;
+                    break;
+                }
             }
             xR++;
         }
@@ -88,6 +106,12 @@ public class Plus extends ChessPiece {
                         && chessPiece.getChessPositionY() == y
                         && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
+                    stopL = true;
+                    break;
+                }
+                else if (chessPiece.getChessPositionX() == xL
+                        && chessPiece.getChessPositionY() == y
+                        && chessPiece.getChessOwner() != super.getChessOwner()) {
                     stopL = true;
                     break;
                 }

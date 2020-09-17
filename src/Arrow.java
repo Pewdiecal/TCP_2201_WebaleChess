@@ -28,6 +28,12 @@ public class Arrow extends ChessPiece {
                             stopMove = true;
                             break;
                         }
+                        else if (chessPiece.getChessPositionX() == x
+                                && chessPiece.getChessPositionY() == y - 1
+                                && chessPiece.getChessOwner() != super.getChessOwner()) {
+                            stopMove = true;
+                            break;
+                        }
                     }
 
                 }
@@ -43,6 +49,12 @@ public class Arrow extends ChessPiece {
                                 && chessPiece.getChessPositionY() == y + i
                                 && chessPiece.getChessOwner() == super.getChessOwner()) {
                             super.getPossibleMovesArray().remove(tempRef);
+                            stopMove = true;
+                            break;
+                        }
+                        else if (chessPiece.getChessPositionX() == x
+                                && chessPiece.getChessPositionY() == y + 1
+                                && chessPiece.getChessOwner() != super.getChessOwner()) {
                             stopMove = true;
                             break;
                         }
