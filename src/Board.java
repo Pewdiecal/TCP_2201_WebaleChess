@@ -8,7 +8,8 @@ public class Board implements Observer {
     private FileManager fileManager;
     private final Player[] players = new Player[2];
     private static Board instance = null;
-    private int playerTurn = 1;
+    private int playerTurn = 1; //switches between 1 (red) and -1 (blue)
+    private String winner;
 
     private Board() {
         this.chessList = new ChessCollection();
@@ -165,7 +166,16 @@ public class Board implements Observer {
             if(playerTurn == 1){ //If red's turn
                 if(pieceToBeMoved.getChessOwner() == players[0]){ //Can only move red chess pieces
                     if(pieceToBeMoved != null && pieceToBeEaten != null){
+                        if(pieceToBeEaten.getChessName().equals("Blue Sun")){
+                            System.out.println("Red wins!");
+                            winner = "Red";
+                        }
+                        else if(pieceToBeEaten.getChessName().equals("Red Sun")){
+                            System.out.println("Blue wins!");
+                            winner = "Blue";
+                        }
                         chessList.getChessPiece().remove(pieceToBeEaten);
+
                     }
                     if(pieceToBeMoved != null){
                         pieceToBeMoved.setChessPosition(toX, toY);
@@ -226,6 +236,10 @@ public class Board implements Observer {
         return null;
     }
 
+    public int getCurrentPlayerTurn(){
+        return playerTurn;
+    }
+
     //DONE
     //return the actual img of the chess to be displayed on the JButton <<< its done
     public BufferedImage getChessPieceImg(int x, int y) {
@@ -251,5 +265,9 @@ public class Board implements Observer {
             }
         }
         return possibleMoves;
+    }
+
+    public String getWinner(){
+        return winner;
     }
 }

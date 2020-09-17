@@ -32,6 +32,9 @@ public class Controller {
     }
 
     private void refreshGameBoard() {
+        if(board.getWinner()!=null){
+            System.out.println("Game ended! " + board.getWinner() + " wins!");
+        }
         setCurrentSelectedPosition(-1, -1);
         for (JButton[] jButtons : chessHolder) {
             for (JButton jButton : jButtons) {
@@ -93,9 +96,7 @@ public class Controller {
         return "";
     }
 
-    public String getCurrentPlayerTurn() {
-        return board.getCurrentPlayerName();
-    }
+    public String getCurrentPlayerTurn() { return board.getCurrentPlayerName(); }
 
     public int[][] getPossibleMoves(int x, int y) {
         return board.getPossibleMoves(x, y);
