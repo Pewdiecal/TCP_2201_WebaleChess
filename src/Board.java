@@ -140,7 +140,6 @@ public class Board implements Observer {
     //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
     public void moveChess(int fromX, int fromY, int toX, int toY) {
 
-        int[][] possibleMoves = new int[0][];
         ChessPiece pieceToBeMoved = null;
         ChessPiece pieceToBeEaten = null;
 
