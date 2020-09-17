@@ -105,15 +105,13 @@ public class Board implements Observer {
     }
 
     public boolean isValidMove(int fromX, int fromY, int toX, int toY){
+        //CURRENT BUG: ChessPiece can choose to eat itself first, then when moving normally, that chess piece actually gets eaten
         boolean isValidMove = false;
 
         for(ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
             if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
                 pieceToBeMoved = chessPiece;
                 for(int[] moves:getPossibleMoves(fromX, fromY)){
-                    if (chessPiece.getChessPositionX() == toX && chessPiece.getChessPositionY() == toY){
-                        pieceToBeEaten = chessPiece;
-                    }
                     if (moves[0] == toX && moves[1] == toY
                             && players[0].getPlayerTurn() //If red's turn
                             && pieceToBeMoved.getChessOwner()==players[0]
@@ -130,6 +128,9 @@ public class Board implements Observer {
                     }
                 }
             }
+            if (chessPiece.getChessPositionX() == toX && chessPiece.getChessPositionY() == toY){
+                pieceToBeEaten = chessPiece;
+            }
         }
         return isValidMove;
     }
@@ -142,15 +143,14 @@ public class Board implements Observer {
         System.out.println(pieceToBeMoved);
         System.out.println(pieceToBeEaten);
         if (pieceToBeMoved != null && pieceToBeEaten != null) {
-            System.out.println("Entered");
-            if (pieceToBeEaten.getChessName().equals("Blue Sun")) {
-                System.out.println("Red wins!");
-                winner = "Red";
-            }
-            if(pieceToBeEaten.getChessName().equals("Red Sun")){
-                System.out.println("Blue wins!");
-                winner = "Blue";
-            }
+//            if (pieceToBeEaten.getChessName().equals("Blue Sun")) {
+//                System.out.println("Red wins!");
+//                winner = "Red";
+//            }
+//            if(pieceToBeEaten.getChessName().equals("Red Sun")){
+//                System.out.println("Blue wins!");
+//                winner = "Blue";
+//            }
             chessList.getChessPiece().remove(pieceToBeEaten);
         }
         pieceToBeMoved.setChessPosition(toX, toY);
