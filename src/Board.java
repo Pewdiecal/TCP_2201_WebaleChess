@@ -44,14 +44,15 @@ public class Board implements Observer {
                 chessPiece.rotateImg();
             }
 
-            if (players[0] == null) {
+            if (chessPiece.getChessOwner().getPlayerID() == 1) {
                 players[0] = chessPiece.getChessOwner();
             }
-            if (players[1] == null) {
-                if (players[0].getPlayerID() != chessPiece.getChessOwner().getPlayerID()) {
-                    players[1] = chessPiece.getChessOwner();
-                }
+
+            if (chessPiece.getChessOwner().getPlayerID() == 2) {
+                players[1] = chessPiece.getChessOwner();
             }
+
+
         }
 
     }

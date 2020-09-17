@@ -23,7 +23,7 @@ public class Sun extends ChessPiece {
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x
                         && chessPiece.getChessPositionY() == y - 1
-                        && chessPiece.getChessOwner().getPlayerID() == super.getChessOwner().getPlayerID()) {
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
                 }
             }
@@ -35,7 +35,7 @@ public class Sun extends ChessPiece {
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x
                         && chessPiece.getChessPositionY() == y + 1
-                        && chessPiece.getChessOwner().getPlayerID() == super.getChessOwner().getPlayerID()) {
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
                 }
             }
@@ -46,7 +46,7 @@ public class Sun extends ChessPiece {
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x - 1
                         && chessPiece.getChessPositionY() == y
-                        && chessPiece.getChessOwner().getPlayerID() == super.getChessOwner().getPlayerID()) {
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
                 }
             }
@@ -57,7 +57,7 @@ public class Sun extends ChessPiece {
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x + 1
                         && chessPiece.getChessPositionY() == y
-                        && chessPiece.getChessOwner().getPlayerID() == super.getChessOwner().getPlayerID()) {
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
                 }
             }
@@ -70,7 +70,7 @@ public class Sun extends ChessPiece {
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x + 1
                         && chessPiece.getChessPositionY() == y - 1
-                        && chessPiece.getChessOwner().getPlayerID() == super.getChessOwner().getPlayerID()) {
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
                 }
             }
@@ -81,7 +81,7 @@ public class Sun extends ChessPiece {
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x + 1
                         && chessPiece.getChessPositionY() == y + 1
-                        && chessPiece.getChessOwner().getPlayerID() == super.getChessOwner().getPlayerID()) {
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
                 }
             }
@@ -92,7 +92,7 @@ public class Sun extends ChessPiece {
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x - 1
                         && chessPiece.getChessPositionY() == y - 1
-                        && chessPiece.getChessOwner().getPlayerID() == super.getChessOwner().getPlayerID()) {
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
                 }
             }
@@ -103,7 +103,7 @@ public class Sun extends ChessPiece {
             for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                 if (chessPiece.getChessPositionX() == x - 1
                         && chessPiece.getChessPositionY() == y + 1
-                        && chessPiece.getChessOwner().getPlayerID() == super.getChessOwner().getPlayerID()) {
+                        && chessPiece.getChessOwner() == super.getChessOwner()) {
                     super.getPossibleMovesArray().remove(tempRef);
                 }
             }

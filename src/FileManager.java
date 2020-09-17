@@ -41,27 +41,48 @@ public class FileManager {
     public ChessCollection loadSavedFile() throws FileNotFoundException {
         Gson gson = new Gson();
         ArrayList<ChessPiece> tempList = new ArrayList<>();
+        Player[] players = new Player[2];
 
         Reader reader = new FileReader("savedGameFile/savedProgress.txt");
         // Convert JSON File to Java Object
         chessCollection = gson.fromJson(reader, ChessCollection.class);
 
         for (ChessPiece chessPiece : chessCollection.getChessPiece()) {
+
+            if (players[0] == null) {
+                players[0] = chessPiece.getChessOwner();
+            }
+            if (players[1] == null) {
+                if (players[0].getPlayerID() != chessPiece.getChessOwner().getPlayerID()) {
+                    players[1] = chessPiece.getChessOwner();
+                }
+            }
+        }
+
+        for (ChessPiece chessPiece : chessCollection.getChessPiece()) {
+            int index;
+
+            for (index = 0; index < players.length; index++) {
+                if (chessPiece.getChessOwner().getPlayerID() == players[index].getPlayerID()) {
+                    break;
+                }
+            }
+
             if (chessPiece.getChessName().contains("Arrow")) {
                 tempList.add(new Arrow(chessPiece.getChessName(), chessPiece.getImgPath(), chessPiece.getChessPositionX()
-                        , chessPiece.getChessPositionY(), chessPiece.getChessOwner()));
+                        , chessPiece.getChessPositionY(), players[index]));
             } else if (chessPiece.getChessName().contains("Sun")) {
                 tempList.add(new Sun(chessPiece.getChessName(), chessPiece.getImgPath(), chessPiece.getChessPositionX()
-                        , chessPiece.getChessPositionY(), chessPiece.getChessOwner()));
+                        , chessPiece.getChessPositionY(), players[index]));
             } else if (chessPiece.getChessName().contains("Triangle")) {
                 tempList.add(new Triangle(chessPiece.getChessName(), chessPiece.getImgPath(), chessPiece.getChessPositionX()
-                        , chessPiece.getChessPositionY(), chessPiece.getChessOwner()));
+                        , chessPiece.getChessPositionY(), players[index]));
             } else if (chessPiece.getChessName().contains("Chevron")) {
                 tempList.add(new Chevron(chessPiece.getChessName(), chessPiece.getImgPath(), chessPiece.getChessPositionX()
-                        , chessPiece.getChessPositionY(), chessPiece.getChessOwner()));
+                        , chessPiece.getChessPositionY(), players[index]));
             } else if (chessPiece.getChessName().contains("Plus")) {
                 tempList.add(new Plus(chessPiece.getChessName(), chessPiece.getImgPath(), chessPiece.getChessPositionX()
-                        , chessPiece.getChessPositionY(), chessPiece.getChessOwner()));
+                        , chessPiece.getChessPositionY(), players[index]));
             }
         }
 
