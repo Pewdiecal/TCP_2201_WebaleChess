@@ -40,7 +40,7 @@ public class Arrow extends ChessPiece {
                     super.getPossibleMovesArray().add(tempRef);
                     for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                         if (chessPiece.getChessPositionX() == x
-                                && chessPiece.getChessPositionY() == y + 1
+                                && chessPiece.getChessPositionY() == y + i
                                 && chessPiece.getChessOwner() == super.getChessOwner()) {
                             super.getPossibleMovesArray().remove(tempRef);
                             stopMove = true;
