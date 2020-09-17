@@ -8,6 +8,7 @@ public class Board implements Observer {
     private FileManager fileManager;
     private final Player[] players = new Player[2];
     private static Board instance = null;
+    private int playerTurn = 1;
 
     private Board() {
         this.chessList = new ChessCollection();
@@ -142,12 +143,14 @@ public class Board implements Observer {
 
         ChessPiece pieceToBeMoved = null;
         ChessPiece pieceToBeEaten = null;
+        boolean canBeMovedThere = false;
 
         for(ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
             if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
                 for(int[] moves:getPossibleMoves(fromX, fromY)){
                     if (moves[0] == toX && moves[1] == toY) {
                         pieceToBeMoved = chessPiece;
+                        canBeMovedThere = true;
                         break;
                     }
                 }
@@ -158,12 +161,31 @@ public class Board implements Observer {
             }
         }
 
-        if(pieceToBeMoved != null && pieceToBeEaten != null && pieceToBeMoved != pieceToBeEaten){
-            chessList.getChessPiece().remove(pieceToBeEaten);
-        }
+        if(canBeMovedThere){ //If the chess piece is moving to a possible move
+            if(playerTurn == 1){ //If red's turn
+                if(pieceToBeMoved.getChessOwner() == players[0]){ //Can only move red chess pieces
+                    if(pieceToBeMoved != null && pieceToBeEaten != null){
+                        chessList.getChessPiece().remove(pieceToBeEaten);
+                    }
+                    if(pieceToBeMoved != null){
+                        pieceToBeMoved.setChessPosition(toX, toY);
+                        playerTurn *= -1;
+                    }
+                }
 
-        if(pieceToBeMoved != null){
-            pieceToBeMoved.setChessPosition(toX, toY);
+
+            }
+            else if(playerTurn == -1){ //If blue's turn
+                if(pieceToBeMoved.getChessOwner() == players[1]) { //Can only move blue chess pieces
+                    if (pieceToBeMoved != null && pieceToBeEaten != null) {
+                        chessList.getChessPiece().remove(pieceToBeEaten);
+                    }
+                    if (pieceToBeMoved != null) {
+                        pieceToBeMoved.setChessPosition(toX, toY);
+                        playerTurn *= -1;
+                    }
+                }
+            }
         }
     }
 
