@@ -37,7 +37,6 @@ public class Board implements Observer {
     public void loadState() throws FileNotFoundException { //players turn needs to be set asap
         fileManager = new FileManager();
         chessList = fileManager.loadSavedFile();
-        chessList.getChessPiece().clear();
 
         for (ChessPiece chessPiece : chessList.getChessPiece()) {
             chessPiece.setChessImage(chessPiece.getImgPath());
