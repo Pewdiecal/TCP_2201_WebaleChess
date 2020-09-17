@@ -8,7 +8,8 @@ public class Board implements Observer {
     private FileManager fileManager;
     private final Player[] players = new Player[2];
     private static Board instance = null;
-    private int playerTurn = 1; //switches between 1 (red) and -1 (blue)
+    ChessPiece pieceToBeMoved = null;
+    ChessPiece pieceToBeEaten = null;
     private String winner;
 
     private Board() {
@@ -103,69 +104,56 @@ public class Board implements Observer {
                 7, players[0]));
     }
 
+    public boolean isValidMove(int fromX, int fromY, int toX, int toY){
+        boolean isValidMove = false;
+
+        for(ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
+            if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
+                pieceToBeMoved = chessPiece;
+                for(int[] moves:getPossibleMoves(fromX, fromY)){
+                    if (chessPiece.getChessPositionX() == toX && chessPiece.getChessPositionY() == toY){
+                        pieceToBeEaten = chessPiece;
+                    }
+                    if (moves[0] == toX && moves[1] == toY
+                            && players[0].getPlayerTurn() //If red's turn
+                            && pieceToBeMoved.getChessOwner()==players[0]
+                            && pieceToBeMoved != null) {
+                        pieceToBeMoved = chessPiece;
+                        isValidMove = true;
+                    }
+                    else if (moves[0] == toX && moves[1] == toY
+                            && players[1].getPlayerTurn() //If blue's turn
+                            && pieceToBeMoved.getChessOwner()==players[1]
+                            && pieceToBeMoved != null) {
+                        pieceToBeMoved = chessPiece;
+                        isValidMove = true;
+                    }
+                }
+            }
+        }
+        return isValidMove;
+    }
     //DONE
     //move the chess position fromX, fromY to toX, toY
     //this is called from my controller to move the chess
     //use the fromX, fromY coordinates to determine what chess is at that coordinate
     //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
-    public void moveChess(int fromX, int fromY, int toX, int toY) {
-
-        ChessPiece pieceToBeMoved = null;
-        ChessPiece pieceToBeEaten = null;
-        boolean canBeMovedThere = false;
-
-        for(ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
-            if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
-                for(int[] moves:getPossibleMoves(fromX, fromY)){
-                    if (moves[0] == toX && moves[1] == toY) {
-                        pieceToBeMoved = chessPiece;
-                        canBeMovedThere = true;
-                        break;
-                    }
-                }
+    public void moveChess(int toX, int toY) {
+        System.out.println(pieceToBeMoved);
+        System.out.println(pieceToBeEaten);
+        if (pieceToBeMoved != null && pieceToBeEaten != null) {
+            System.out.println("Entered");
+            if (pieceToBeEaten.getChessName().equals("Blue Sun")) {
+                System.out.println("Red wins!");
+                winner = "Red";
             }
-
-            if (chessPiece.getChessPositionX() == toX && chessPiece.getChessPositionY() == toY){
-                pieceToBeEaten = chessPiece;
+            if(pieceToBeEaten.getChessName().equals("Red Sun")){
+                System.out.println("Blue wins!");
+                winner = "Blue";
             }
+            chessList.getChessPiece().remove(pieceToBeEaten);
         }
-
-        if(canBeMovedThere){ //If the chess piece is moving to a possible move
-            if(playerTurn == 1){ //If red's turn
-                if(pieceToBeMoved.getChessOwner() == players[0]){ //Can only move red chess pieces
-                    if(pieceToBeMoved != null && pieceToBeEaten != null){
-                        if(pieceToBeEaten.getChessName().equals("Blue Sun")){
-                            System.out.println("Red wins!");
-                            winner = "Red";
-                        }
-                        else if(pieceToBeEaten.getChessName().equals("Red Sun")){
-                            System.out.println("Blue wins!");
-                            winner = "Blue";
-                        }
-                        chessList.getChessPiece().remove(pieceToBeEaten);
-
-                    }
-                    if(pieceToBeMoved != null){
-                        pieceToBeMoved.setChessPosition(toX, toY);
-                        playerTurn *= -1;
-                    }
-                }
-
-
-            }
-            else if(playerTurn == -1){ //If blue's turn
-                if(pieceToBeMoved.getChessOwner() == players[1]) { //Can only move blue chess pieces
-                    if (pieceToBeMoved != null && pieceToBeEaten != null) {
-                        chessList.getChessPiece().remove(pieceToBeEaten);
-                    }
-                    if (pieceToBeMoved != null) {
-                        pieceToBeMoved.setChessPosition(toX, toY);
-                        playerTurn *= -1;
-                    }
-                }
-            }
-            onChessMove();
-        }
+        pieceToBeMoved.setChessPosition(toX, toY);
     }
 
     //DONE
@@ -199,10 +187,6 @@ public class Board implements Observer {
             }
         }
         return null;
-    }
-
-    public int getCurrentPlayerTurn(){
-        return playerTurn;
     }
 
     //DONE

@@ -27,8 +27,10 @@ public class Controller {
     }
 
     public void setChessPosition(int x, int y) {
-        board.moveChess(getCurrentSelectedPosition()[0][0], getCurrentSelectedPosition()[0][1], x, y);
-        //board.onChessMove();
+        if (board.isValidMove(getCurrentSelectedPosition()[0][0], getCurrentSelectedPosition()[0][1], x, y)){
+            board.moveChess(x, y);
+            board.onChessMove();
+        }
         refreshGameBoard();
     }
 
