@@ -75,7 +75,20 @@ public class ChessPiece implements Chess, Observable {
 
     public void setChessPosition(int x, int y) {
         ArrayList<ChessPiece> temp = new ArrayList<>();
+
+        this.chessPositionX = x;
+        this.chessPositionY = y;
+
+        if (y == 7 && chessName.contains("Arrow")) {
+            this.arrowRotation = false;
+            rotateImg();
+        } else if (y == 0 && chessName.contains("Arrow")) {
+            this.arrowRotation = true;
+            rotateImg();
+        }
+
         accumulator++;
+
         if (accumulator % 4 == 0) {
             Iterator<ChessPiece> iterator = board.getChessList().getChessPiece().iterator();
             while (iterator.hasNext()) {
@@ -105,13 +118,7 @@ public class ChessPiece implements Chess, Observable {
             board.getChessList().getChessPiece().addAll(temp);
         }
 
-        this.chessPositionX = x;
-        this.chessPositionY = y;
-        if (y == 7) {
-            this.arrowRotation = false;
-        } else if (y == 0) {
-            this.arrowRotation = true;
-        }
+
     }
 
     public void setChessImage(String imgPath) {

@@ -8,6 +8,7 @@ public class Board implements Observer {
     private FileManager fileManager;
     private final Player[] players = new Player[2];
     private static Board instance = null;
+    private int playerTurn = 1;
 
     private Board() {
         this.chessList = new ChessCollection();
@@ -107,19 +108,19 @@ public class Board implements Observer {
     //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
     public void moveChess(int fromX, int fromY, int toX, int toY) {
 
-        /* If the position where the current chess piece will be moved have a chess piece (definitely
-         * opponent's chess piece because we already checked for our own), then remove the opponent's
-         * chess piece then move the current chess piece.
-         * Else, just move it there (since it's an empty space)
-         *
-         * This is just to let you guys understand, can remove this comment afterwards. */
-
         ChessPiece pieceToBeMoved = null;
         ChessPiece pieceToBeEaten = null;
+        boolean canBeMovedThere = false;
 
         for(ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
             if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
-                pieceToBeMoved = chessPiece;
+                for(int[] moves:getPossibleMoves(fromX, fromY)){
+                    if (moves[0] == toX && moves[1] == toY) {
+                        pieceToBeMoved = chessPiece;
+                        canBeMovedThere = true;
+                        break;
+                    }
+                }
             }
 
             if (chessPiece.getChessPositionX() == toX && chessPiece.getChessPositionY() == toY){
@@ -127,12 +128,31 @@ public class Board implements Observer {
             }
         }
 
-        if(pieceToBeMoved != null && pieceToBeEaten != null){
-            chessList.getChessPiece().remove(pieceToBeEaten);
-        }
+        if(canBeMovedThere){ //If the chess piece is moving to a possible move
+            if(playerTurn == 1){ //If red's turn
+                if(pieceToBeMoved.getChessOwner() == players[0]){ //Can only move red chess pieces
+                    if(pieceToBeMoved != null && pieceToBeEaten != null){
+                        chessList.getChessPiece().remove(pieceToBeEaten);
+                    }
+                    if(pieceToBeMoved != null){
+                        pieceToBeMoved.setChessPosition(toX, toY);
+                        playerTurn *= -1;
+                    }
+                }
 
-        if(pieceToBeMoved != null){
-            pieceToBeMoved.setChessPosition(toX, toY);
+
+            }
+            else if(playerTurn == -1){ //If blue's turn
+                if(pieceToBeMoved.getChessOwner() == players[1]) { //Can only move blue chess pieces
+                    if (pieceToBeMoved != null && pieceToBeEaten != null) {
+                        chessList.getChessPiece().remove(pieceToBeEaten);
+                    }
+                    if (pieceToBeMoved != null) {
+                        pieceToBeMoved.setChessPosition(toX, toY);
+                        playerTurn *= -1;
+                    }
+                }
+            }
         }
     }
 
