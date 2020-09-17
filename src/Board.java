@@ -140,19 +140,18 @@ public class Board implements Observer {
     //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
     public void moveChess(int fromX, int fromY, int toX, int toY) {
 
-        /* If the position where the current chess piece will be moved have a chess piece (definitely
-         * opponent's chess piece because we already checked for our own), then remove the opponent's
-         * chess piece then move the current chess piece.
-         * Else, just move it there (since it's an empty space)
-         *
-         * This is just to let you guys understand, can remove this comment afterwards. */
-
+        int[][] possibleMoves = new int[0][];
         ChessPiece pieceToBeMoved = null;
         ChessPiece pieceToBeEaten = null;
 
         for(ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
             if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
-                pieceToBeMoved = chessPiece;
+                for(int[] moves:getPossibleMoves(fromX, fromY)){
+                    if (moves[0] == toX && moves[1] == toY) {
+                        pieceToBeMoved = chessPiece;
+                        break;
+                    }
+                }
             }
 
             if (chessPiece.getChessPositionX() == toX && chessPiece.getChessPositionY() == toY){
