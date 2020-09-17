@@ -65,8 +65,8 @@ public class Controller {
     }
 
     public void createNewGame() {
-        board.addPlayer(mainUI.displayDialog(viewHolder, 1));
-        board.addPlayer(mainUI.displayDialog(viewHolder, 2));
+        board.addPlayer(mainUI.displayDialog(viewHolder, 1), 0);
+        board.addPlayer(mainUI.displayDialog(viewHolder, 2), 1);
         board.reloadNewState();
         chessHolder = mainUI.initGameView();
     }

@@ -30,23 +30,6 @@ public class Board implements Observer {
     //save the current state of the game
     public void saveState() throws IOException {
         fileManager = new FileManager(chessList);
-        for (ChessPiece chessPiece : chessList.getChessPiece()) {
-            if (chessPiece instanceof Arrow) {
-                chessList.getArrows().add((Arrow) chessPiece);
-            }
-            if (chessPiece instanceof Sun) {
-                chessList.getSun().add((Sun) chessPiece);
-            }
-            if (chessPiece instanceof Triangle) {
-                chessList.getTriangles().add((Triangle) chessPiece);
-            }
-            if (chessPiece instanceof Plus) {
-                chessList.getPluses().add((Plus) chessPiece);
-            }
-            if (chessPiece instanceof Chevron) {
-                chessList.getChevrons().add((Chevron) chessPiece);
-            }
-        }
         fileManager.writeToFile();
     }
 
@@ -55,22 +38,6 @@ public class Board implements Observer {
     public void loadState() throws FileNotFoundException { //players turn needs to be set asap
         fileManager = new FileManager();
         chessList = fileManager.loadSavedFile();
-        chessList.getChessPiece().clear();
-        for (Arrow arrow : chessList.getArrows()) {
-            chessList.getChessPiece().add(arrow);
-        }
-        for (Chevron chevron : chessList.getChevrons()) {
-            chessList.getChessPiece().add(chevron);
-        }
-        for (Plus plus : chessList.getPluses()) {
-            chessList.getChessPiece().add(plus);
-        }
-        for (Sun sun : chessList.getSun()) {
-            chessList.getChessPiece().add(sun);
-        }
-        for (Triangle triangle : chessList.getTriangles()) {
-            chessList.getChessPiece().add(triangle);
-        }
 
         for (ChessPiece chessPiece : chessList.getChessPiece()) {
             chessPiece.setChessImage(chessPiece.getImgPath());
@@ -78,14 +45,15 @@ public class Board implements Observer {
                 chessPiece.rotateImg();
             }
 
-            if (players[0] == null) {
+            if (chessPiece.getChessOwner().getPlayerID() == 1) {
                 players[0] = chessPiece.getChessOwner();
             }
-            if (players[1] == null) {
-                if (players[0].getPlayerID() != chessPiece.getChessOwner().getPlayerID()) {
-                    players[1] = chessPiece.getChessOwner();
-                }
+
+            if (chessPiece.getChessOwner().getPlayerID() == 2) {
+                players[1] = chessPiece.getChessOwner();
             }
+
+
         }
 
     }
@@ -214,14 +182,10 @@ public class Board implements Observer {
 
     //DONE
     //create and assign each player to both side of the chess
-    public void addPlayer(String playerName) { //players turn needs to be set before calling reloadNewState << solve this
-        for(int i = 0; i < players.length; i++) {
-            if (players[i] == null) {
-                players[i] = new Player(playerName, i + 1);
-                if(i == 0){
-                    players[i].setPlayerTurn(true); // Player 1 is assigned Turn 1
-                }
-            }
+    public void addPlayer(String playerName, int index) { //players turn needs to be set before calling reloadNewState << solve this
+        players[index] = new Player(playerName, index + 1);
+        if (index == 0) {
+            players[index].setPlayerTurn(true); // Player 1 is assigned Turn 1
         }
     }
 
