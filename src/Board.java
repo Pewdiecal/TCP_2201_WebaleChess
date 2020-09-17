@@ -2,7 +2,6 @@ import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
 public class Board implements Observer {
 
     private ChessCollection chessList;
@@ -110,34 +109,28 @@ public class Board implements Observer {
         chessList.addChess(new Sun("Blue Sun", "image/BlueSun.png", 3, 0, players[1]));
         chessList.addChess(new Sun("Red Sun", "image/RedSun.png", 3, 7, players[0]));
 
-        for (int plus = 0; plus < 4; plus++) {
-            chessList.addChess(new Plus("Blue Plus", "image/BluePlus.png", 0, 0, players[1]));
-            chessList.addChess(new Plus("Blue Plus", "image/BluePlus.png", 6, 0, players[1]));
-            chessList.addChess(new Plus("Red Plus", "image/RedPlus.png", 0, 7, players[0]));
-            chessList.addChess(new Plus("Red Plus", "image/RedPlus.png", 6, 7, players[0]));
-        }
+        chessList.addChess(new Plus("Blue Plus", "image/BluePlus.png", 0, 0, players[1]));
+        chessList.addChess(new Plus("Blue Plus", "image/BluePlus.png", 6, 0, players[1]));
+        chessList.addChess(new Plus("Red Plus", "image/RedPlus.png", 0, 7, players[0]));
+        chessList.addChess(new Plus("Red Plus", "image/RedPlus.png", 6, 7, players[0]));
 
-        for (int triangle = 0; triangle < 4; triangle++) {
-            chessList.addChess(new Triangle("Blue Triangle", "image/BlueTriangle.png", 1,
-                    0, players[1]));
-            chessList.addChess(new Triangle("Blue Triangle", "image/BlueTriangle.png", 5,
-                    0, players[1]));
-            chessList.addChess(new Triangle("Red Triangle", "image/RedTriangle.png", 1,
-                    7, players[0]));
-            chessList.addChess(new Triangle("Red Triangle", "image/RedTriangle.png", 5,
-                    7, players[0]));
-        }
+        chessList.addChess(new Triangle("Blue Triangle", "image/BlueTriangle.png", 1,
+                0, players[1]));
+        chessList.addChess(new Triangle("Blue Triangle", "image/BlueTriangle.png", 5,
+                0, players[1]));
+        chessList.addChess(new Triangle("Red Triangle", "image/RedTriangle.png", 1,
+                7, players[0]));
+        chessList.addChess(new Triangle("Red Triangle", "image/RedTriangle.png", 5,
+                7, players[0]));
 
-        for (int chevron = 0; chevron < 4; chevron++) {
-            chessList.addChess(new Chevron("Blue Chevron", "image/BlueChevron.png", 2,
-                    0, players[1]));
-            chessList.addChess(new Chevron("Blue Chevron", "image/BlueChevron.png", 4,
-                    0, players[1]));
-            chessList.addChess(new Chevron("Red Chevron", "image/RedChevron.png", 2,
-                    7, players[0]));
-            chessList.addChess(new Chevron("Red Chevron", "image/RedChevron.png", 4,
-                    7, players[0]));
-        }
+        chessList.addChess(new Chevron("Blue Chevron", "image/BlueChevron.png", 2,
+                0, players[1]));
+        chessList.addChess(new Chevron("Blue Chevron", "image/BlueChevron.png", 4,
+                0, players[1]));
+        chessList.addChess(new Chevron("Red Chevron", "image/RedChevron.png", 2,
+                7, players[0]));
+        chessList.addChess(new Chevron("Red Chevron", "image/RedChevron.png", 4,
+                7, players[0]));
     }
 
     //DONE
@@ -146,16 +139,33 @@ public class Board implements Observer {
     //use the fromX, fromY coordinates to determine what chess is at that coordinate
     //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
     public void moveChess(int fromX, int fromY, int toX, int toY) {
-        for (int i = 0; i < chessList.getChessPiece().size(); i++) {
-            if (chessList.getChessPiece().get(i).getChessPositionX() == fromX &&
-                    chessList.getChessPiece().get(i).getChessPositionY() == fromY) {
-                //Confirm is the chess piece we want
-                for (int[] elements : getPossibleMoves(fromX, fromY)) {
-                    if (elements[0] == toX && elements[1] == toY) {
-                        chessList.getChessPiece().get(i).setChessPosition(toX, toY);
-                    }
-                }
+
+        /* If the position where the current chess piece will be moved have a chess piece (definitely
+         * opponent's chess piece because we already checked for our own), then remove the opponent's
+         * chess piece then move the current chess piece.
+         * Else, just move it there (since it's an empty space)
+         *
+         * This is just to let you guys understand, can remove this comment afterwards. */
+
+        ChessPiece pieceToBeMoved = null;
+        ChessPiece pieceToBeEaten = null;
+
+        for(ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
+            if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
+                pieceToBeMoved = chessPiece;
             }
+
+            if (chessPiece.getChessPositionX() == toX && chessPiece.getChessPositionY() == toY){
+                pieceToBeEaten = chessPiece;
+            }
+        }
+
+        if(pieceToBeMoved != null && pieceToBeEaten != null){
+            chessList.getChessPiece().remove(pieceToBeEaten);
+        }
+
+        if(pieceToBeMoved != null){
+            pieceToBeMoved.setChessPosition(toX, toY);
         }
     }
 
