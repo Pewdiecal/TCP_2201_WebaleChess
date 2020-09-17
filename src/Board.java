@@ -114,6 +114,7 @@ public class Board implements Observer {
                 for (int[] elements : getPossibleMoves(fromX, fromY)) {
                     if (elements[0] == toX && elements[1] == toY) {
                         chessPiece.setChessPosition(toX, toY);
+                        onChessMove();
                     }
                 }
             }
