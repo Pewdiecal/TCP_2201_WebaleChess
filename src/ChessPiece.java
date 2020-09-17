@@ -80,10 +80,10 @@ public class ChessPiece implements Chess, Observable {
         this.chessPositionX = x;
         this.chessPositionY = y;
 
-        if (y == 7) {
+        if (y == 7 && chessName.contains("Arrow")) {
             this.arrowRotation = false;
             rotateImg();
-        } else if (y == 0) {
+        } else if (y == 0 && chessName.contains("Arrow")) {
             this.arrowRotation = true;
             rotateImg();
         }
