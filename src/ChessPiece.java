@@ -82,8 +82,10 @@ public class ChessPiece implements Chess, Observable {
 
         if (y == 7) {
             this.arrowRotation = false;
+            rotateImg();
         } else if (y == 0) {
             this.arrowRotation = true;
+            rotateImg();
         }
 
         accumulator++;
