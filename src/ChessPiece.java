@@ -77,10 +77,7 @@ public class ChessPiece implements Chess, Observable {
         ArrayList<ChessPiece> temp = new ArrayList<>();
         accumulator++;
         if (accumulator % 4 == 0) {
-            for (ChessPiece chessPiece : board.getChessList().getChessPiece()) { //while we're accessing board.getChessList().getChessPiece()
-                //board.getChessList().getChessPiece().remove(chessPiece); cannot be removed, cuz mutex lock
 
-            }
             for (int i = 0; i < board.getChessList().getChessPiece().size() - 1; i++) {
 
                 int positionX = board.getChessList().getChessPiece().get(i).getChessPositionX();
