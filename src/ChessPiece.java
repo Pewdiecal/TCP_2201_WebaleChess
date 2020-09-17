@@ -174,6 +174,9 @@ public class ChessPiece implements Chess, Observable {
     @Override
     public void flipPosition() {
         //Flip the position of this single chess when a successful chess move is detected
+        chessPositionX = 6 - chessPositionX;
+        chessPositionY = 7 - chessPositionY;
+        rotateImg();
     }
 
     @Override

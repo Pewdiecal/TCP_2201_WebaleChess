@@ -18,5 +18,8 @@ public class ChessCollection implements Chess {
         //Flip all position of the chess by iterating it through all of the elements in the ArrayList
         //While its iterating through the list, just call ChessPiece.flipPosition() since flipPosition in the
         //chessPiece is implemented to flip a single chess
+        for(ChessPiece chessPiece: chessPieces){
+            chessPiece.flipPosition();
+        }
     }
 }
