@@ -159,7 +159,7 @@ public class Board implements Observer {
             }
         }
 
-        if(pieceToBeMoved != null && pieceToBeEaten != null){
+        if(pieceToBeMoved != null && pieceToBeEaten != null && pieceToBeMoved != pieceToBeEaten){
             chessList.getChessPiece().remove(pieceToBeEaten);
         }
 
