@@ -108,12 +108,14 @@ public class Board implements Observer {
     //use the fromX, fromY coordinates to determine what chess is at that coordinate
     //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
     public void moveChess(int fromX, int fromY, int toX, int toY) {
-        for (ChessPiece chessPiece : chessList.getChessPiece()) { //Check every chess piece
-            if (chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY) {
+
+        for (int i = 0; i < chessList.getChessPiece().size(); i++) {
+            if (chessList.getChessPiece().get(i).getChessPositionX() == fromX
+                    && chessList.getChessPiece().get(i).getChessPositionY() == fromY) {
                 //Confirm is the chess piece we want
                 for (int[] elements : getPossibleMoves(fromX, fromY)) {
                     if (elements[0] == toX && elements[1] == toY) {
-                        chessPiece.setChessPosition(toX, toY);
+                        chessList.getChessPiece().get(i).setChessPosition(toX, toY);
                         onChessMove();
                     }
                 }
