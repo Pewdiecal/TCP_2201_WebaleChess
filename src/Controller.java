@@ -27,17 +27,11 @@ public class Controller {
     }
 
     public void setChessPosition(int x, int y) {
-        if (board.isValidMove(getCurrentSelectedPosition()[0][0], getCurrentSelectedPosition()[0][1], x, y)){
-            board.moveChess(x, y);
-            board.onChessMove();
-        }
+        board.moveChess(getCurrentSelectedPosition()[0][0], getCurrentSelectedPosition()[0][1], x, y);
         refreshGameBoard();
     }
 
     private void refreshGameBoard() {
-        if(board.getWinner()!=null){
-            System.out.println("Game ended! " + board.getWinner() + " wins!");
-        }
         setCurrentSelectedPosition(-1, -1);
         for (JButton[] jButtons : chessHolder) {
             for (JButton jButton : jButtons) {
@@ -99,7 +93,9 @@ public class Controller {
         return "";
     }
 
-    public String getCurrentPlayerTurn() { return board.getCurrentPlayerName(); }
+    public String getCurrentPlayerTurn() {
+        return board.getCurrentPlayerName();
+    }
 
     public int[][] getPossibleMoves(int x, int y) {
         return board.getPossibleMoves(x, y);
