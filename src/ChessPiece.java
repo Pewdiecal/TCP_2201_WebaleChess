@@ -20,6 +20,7 @@ public class ChessPiece implements Chess, Observable {
     private transient BufferedImage bufferedImage;
     private boolean isOnBoard = true;
     private boolean arrowRotation = false;
+    private boolean triangleRotation = false;
     private Player chessOwner;
     private final ArrayList<int[]> possibleMovesArray = new ArrayList<>();
 
@@ -75,7 +76,6 @@ public class ChessPiece implements Chess, Observable {
 
     public void setChessPosition(int x, int y) {
         ArrayList<ChessPiece> temp = new ArrayList<>();
-
         this.chessPositionX = x;
         this.chessPositionY = y;
 
@@ -174,8 +174,8 @@ public class ChessPiece implements Chess, Observable {
     @Override
     public void flipPosition() {
         //Flip the position of this single chess when a successful chess move is detected
-        chessPositionX = 6 - chessPositionX;
-        chessPositionY = 7 - chessPositionY;
+        this.chessPositionX = 6 - chessPositionX;
+        this.chessPositionY = 7 - chessPositionY;
         rotateImg();
     }
 

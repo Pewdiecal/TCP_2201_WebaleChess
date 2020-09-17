@@ -22,4 +22,15 @@ public class ChessCollection implements Chess {
             chessPiece.flipPosition();
         }
     }
+
+    public void updateList(){
+        ArrayList<ChessPiece> temp = new ArrayList<>();
+        for (int i = 0; i < chessPieces.size(); i++){
+            if(chessPieces.get(i).isOnBoard()){
+                temp.add(chessPieces.get(i));
+            }
+        }
+        this.chessPieces.clear();
+        this.chessPieces.addAll(temp);
+    }
 }

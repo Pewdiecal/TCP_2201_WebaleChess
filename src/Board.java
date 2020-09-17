@@ -109,17 +109,36 @@ public class Board implements Observer {
     //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
     public void moveChess(int fromX, int fromY, int toX, int toY) {
 
+        boolean pass = true;
         for (int i = 0; i < chessList.getChessPiece().size(); i++) {
-            if (chessList.getChessPiece().get(i).getChessPositionX() == fromX
-                    && chessList.getChessPiece().get(i).getChessPositionY() == fromY) {
-                //Confirm is the chess piece we want
-                for (int[] elements : getPossibleMoves(fromX, fromY)) {
-                    if (elements[0] == toX && elements[1] == toY) {
-                        chessList.getChessPiece().get(i).setChessPosition(toX, toY);
-                        onChessMove();
+            //ChessPiece currentChess = chessList.getChessPiece().get(i);
+            //ChessPiece eatChess;
+            if(pass) {
+                if (chessList.getChessPiece().get(i).getChessPositionX() == fromX
+                        && chessList.getChessPiece().get(i).getChessPositionY() == fromY) {
+                    //Confirm is the chess piece we want
+                    for (int[] elements : getPossibleMoves(fromX, fromY)) {
+                        if (elements[0] == toX && elements[1] == toY) {
+                            for (int j = 0; j < chessList.getChessPiece().size(); j++) {
+                                if (chessList.getChessPiece().get(j).getChessPositionX() == toX
+                                        && chessList.getChessPiece().get(j).getChessPositionY() == toY) {
+                                    System.out.println(chessList.getChessPiece().get(i).getChessPositionX() + " " + chessList.getChessPiece().get(i).getChessPositionY());
+                                    chessList.getChessPiece().get(j).setIsOnBoard(false);
+                                    System.out.println(chessList.getChessPiece().get(i).getChessPositionX() + " " + chessList.getChessPiece().get(i).getChessPositionY());
+
+                                }
+                            }
+                            System.out.println("Came here");
+                            chessList.getChessPiece().get(i).setChessPosition(toX, toY);
+                            System.out.println("Went out");
+                            onChessMove();
+                            pass = false;
+                            chessList.updateList();
+                            break;
+                        }
                     }
                 }
-            }
+            }else{break;}
         }
     }
 
