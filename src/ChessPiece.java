@@ -1,5 +1,4 @@
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +12,7 @@ public class ChessPiece implements Chess, Observable {
         return board;
     }
 
-    private final Board board = Board.getInstance();
+    private transient final Board board = Board.getInstance();
     private int chessPositionX;
     private int chessPositionY;
     private final String chessName;
