@@ -25,107 +25,104 @@ public class Triangle extends ChessPiece {
 
         super.getPossibleMovesArray().clear();
 
-        //Down-Right
-        while(xDR < 7 && yDR < 8 && !stopDR) {
-            int[] tempRef = new int[]{xDR, yDR};
-            super.getPossibleMovesArray().add(tempRef);
+        if(getChessOwner().getPlayerTurn()) {
+            //Down-Right
+            while (xDR < 7 && yDR < 8 && !stopDR) {
+                int[] tempRef = new int[]{xDR, yDR};
+                super.getPossibleMovesArray().add(tempRef);
 
-            // allows moving to empty space & prevents eating own chess piece
-            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
-                if (chessPiece.getChessPositionX() == xDR
-                        && chessPiece.getChessPositionY() == yDR
-                        && chessPiece.getChessOwner() == super.getChessOwner()) {
-                    super.getPossibleMovesArray().remove(tempRef);
-                    stopDR = true;
-                    break;
+                // allows moving to empty space & prevents eating own chess piece
+                for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                    if (chessPiece.getChessPositionX() == xDR
+                            && chessPiece.getChessPositionY() == yDR
+                            && chessPiece.getChessOwner() == super.getChessOwner()) {
+                        super.getPossibleMovesArray().remove(tempRef);
+                        stopDR = true;
+                        break;
+                    } else if (chessPiece.getChessPositionX() == xDR
+                            && chessPiece.getChessPositionY() == yDR
+                            && chessPiece.getChessOwner() != super.getChessOwner()) {
+                        stopDR = true;
+                        break;
+                    }
                 }
-                else if (chessPiece.getChessPositionX() == xDR
-                        && chessPiece.getChessPositionY() == yDR
-                        && chessPiece.getChessOwner() != super.getChessOwner()) {
-                    stopDR = true;
-                    break;
-                }
-            }
-            xDR++;
-            yDR++;
-        }
-
-        //Up-Left
-        while(xUL >= 0 && yUL >= 0 && !stopUL) {
-            int[] tempRef = new int[]{xUL, yUL};
-            super.getPossibleMovesArray().add(tempRef);
-
-            // allows moving to empty space & prevents eating own chess piece
-            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
-                if (chessPiece.getChessPositionX() == xUL
-                        && chessPiece.getChessPositionY() == yUL
-                        && chessPiece.getChessOwner() == super.getChessOwner()) {
-                    super.getPossibleMovesArray().remove(tempRef);
-                    stopUL = true;
-                    break;
-                }
-                else if (chessPiece.getChessPositionX() == xUL
-                        && chessPiece.getChessPositionY() == yUL
-                        && chessPiece.getChessOwner() != super.getChessOwner()) {
-                    stopUL = true;
-                    break;
-                }
+                xDR++;
+                yDR++;
             }
 
-            xUL--;
-            yUL--;
-        }
+            //Up-Left
+            while (xUL >= 0 && yUL >= 0 && !stopUL) {
+                int[] tempRef = new int[]{xUL, yUL};
+                super.getPossibleMovesArray().add(tempRef);
 
-        //Down-Left
-        while(xDL >= 0 && yDL < 8 && !stopDL) {
-            int[] tempRef = new int[]{xDL, yDL};
-            super.getPossibleMovesArray().add(tempRef);
+                // allows moving to empty space & prevents eating own chess piece
+                for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                    if (chessPiece.getChessPositionX() == xUL
+                            && chessPiece.getChessPositionY() == yUL
+                            && chessPiece.getChessOwner() == super.getChessOwner()) {
+                        super.getPossibleMovesArray().remove(tempRef);
+                        stopUL = true;
+                        break;
+                    } else if (chessPiece.getChessPositionX() == xUL
+                            && chessPiece.getChessPositionY() == yUL
+                            && chessPiece.getChessOwner() != super.getChessOwner()) {
+                        stopUL = true;
+                        break;
+                    }
+                }
 
-            // allows moving to empty space & prevents eating own chess piece
-            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
-                if (chessPiece.getChessPositionX() == xDL
-                        && chessPiece.getChessPositionY() == yDL
-                        && chessPiece.getChessOwner() == super.getChessOwner()) {
-                    super.getPossibleMovesArray().remove(tempRef);
-                    stopDL = true;
-                    break;
-                }
-                else if (chessPiece.getChessPositionX() == xDL
-                        && chessPiece.getChessPositionY() == yDL
-                        && chessPiece.getChessOwner() != super.getChessOwner()) {
-                    stopDL = true;
-                    break;
-                }
+                xUL--;
+                yUL--;
             }
-            xDL--;
-            yDL++;
-        }
 
-        //Up-Right
-        while(xUR < 7 && yUR >= 0 && !stopUR) {
-            int[] tempRef = new int[]{xUR, yUR};
-            super.getPossibleMovesArray().add(tempRef);
+            //Down-Left
+            while (xDL >= 0 && yDL < 8 && !stopDL) {
+                int[] tempRef = new int[]{xDL, yDL};
+                super.getPossibleMovesArray().add(tempRef);
 
-            // allows moving to empty space & prevents eating own chess piece
-            for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
-                if (chessPiece.getChessPositionX() == xUR
-                        && chessPiece.getChessPositionY() == yUR
-                        && chessPiece.getChessOwner() == super.getChessOwner()) {
-                    super.getPossibleMovesArray().remove(tempRef);
-                    stopUR = true;
-                    break;
+                // allows moving to empty space & prevents eating own chess piece
+                for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                    if (chessPiece.getChessPositionX() == xDL
+                            && chessPiece.getChessPositionY() == yDL
+                            && chessPiece.getChessOwner() == super.getChessOwner()) {
+                        super.getPossibleMovesArray().remove(tempRef);
+                        stopDL = true;
+                        break;
+                    } else if (chessPiece.getChessPositionX() == xDL
+                            && chessPiece.getChessPositionY() == yDL
+                            && chessPiece.getChessOwner() != super.getChessOwner()) {
+                        stopDL = true;
+                        break;
+                    }
                 }
-                else if (chessPiece.getChessPositionX() == xUR
-                        && chessPiece.getChessPositionY() == yUR
-                        && chessPiece.getChessOwner() != super.getChessOwner()) {
-                    stopUR = true;
-                    break;
-                }
+                xDL--;
+                yDL++;
             }
-            xUR++;
-            yUR--;
-        }
 
+            //Up-Right
+            while (xUR < 7 && yUR >= 0 && !stopUR) {
+                int[] tempRef = new int[]{xUR, yUR};
+                super.getPossibleMovesArray().add(tempRef);
+
+                // allows moving to empty space & prevents eating own chess piece
+                for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
+                    if (chessPiece.getChessPositionX() == xUR
+                            && chessPiece.getChessPositionY() == yUR
+                            && chessPiece.getChessOwner() == super.getChessOwner()) {
+                        super.getPossibleMovesArray().remove(tempRef);
+                        stopUR = true;
+                        break;
+                    } else if (chessPiece.getChessPositionX() == xUR
+                            && chessPiece.getChessPositionY() == yUR
+                            && chessPiece.getChessOwner() != super.getChessOwner()) {
+                        stopUR = true;
+                        break;
+                    }
+                }
+                xUR++;
+                yUR--;
+            }
+        }
         return super.getPossibleMovesArray();
     }
 
