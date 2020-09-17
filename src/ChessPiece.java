@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ChessPiece implements Chess, Observable {
     private static int accumulator;
@@ -77,34 +78,34 @@ public class ChessPiece implements Chess, Observable {
         ArrayList<ChessPiece> temp = new ArrayList<>();
         accumulator++;
         if (accumulator % 4 == 0) {
-
-            for (int i = 0; i < board.getChessList().getChessPiece().size() - 1; i++) {
-
-                int positionX = board.getChessList().getChessPiece().get(i).getChessPositionX();
-                int positionY = board.getChessList().getChessPiece().get(i).getChessPositionY();
-                Player player = board.getChessList().getChessPiece().get(i).getChessOwner();
-
-                switch (board.getChessList().getChessPiece().get(i).getChessName()) {
+            Iterator<ChessPiece> iterator = board.getChessList().getChessPiece().iterator();
+            while (iterator.hasNext()) {
+                ChessPiece cp = iterator.next();
+                int positionX = cp.getChessPositionX();
+                int positionY = cp.getChessPositionY();
+                Player player = cp.getChessOwner();
+                switch (cp.getChessName()) {
                     case "Blue Triangle":
-                        board.getChessList().getChessPiece().remove(board.getChessList().getChessPiece().get(i));
+                        iterator.remove();
                         temp.add(new Plus("Blue Plus", "image/BluePlus.png", positionX, positionY, player));
                         break;
                     case "Blue Plus":
-                        board.getChessList().getChessPiece().remove(board.getChessList().getChessPiece().get(i));
+                        iterator.remove();
                         temp.add(new Triangle("Blue Triangle", "image/BlueTriangle.png", positionX, positionY, player));
                         break;
                     case "Red Triangle":
-                        board.getChessList().getChessPiece().remove(board.getChessList().getChessPiece().get(i));
+                        iterator.remove();
                         temp.add(new Plus("Red Plus", "image/RedPlus.png", positionX, positionY, player));
                         break;
                     case "Red Plus":
-                        board.getChessList().getChessPiece().remove(board.getChessList().getChessPiece().get(i));
+                        iterator.remove();
                         temp.add(new Triangle("Red Triangle", "image/RedTriangle.png", positionX, positionY, player));
                         break;
                 }
             }
             board.getChessList().getChessPiece().addAll(temp);
         }
+
         this.chessPositionX = x;
         this.chessPositionY = y;
         if (y == 7) {
