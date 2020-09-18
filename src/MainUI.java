@@ -3,8 +3,14 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 
+/**
+ * This is the MainUI class that responsible to display
+ * the main menu UI and the gameplay UI.
+ *
+ * @version 1.0
+ * @since 2020-09-18
+ */
 public class MainUI {
     Controller controller;
     final int BOARD_WIDTH = 7;
@@ -12,9 +18,12 @@ public class MainUI {
 
     public static void main(String[] args) {
         MainUI mainUI = new MainUI();
-        mainUI.initView(mainUI);
+        mainUI.initView(mainUI); //initialize the menu screen
     }
 
+    /* Author: Lau Yee Keen Calvin
+       Desc: initialize and inflate the main menu screen
+     */
     public void initView(MainUI mainUI) {
         JFrame viewHolder = new JFrame();
         controller = new Controller(mainUI, viewHolder);
@@ -22,6 +31,7 @@ public class MainUI {
         viewHolder.setSize(400, 600);
         viewHolder.setLayout(new GridBagLayout());
 
+        //set the layout
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.ipadx = 20;
         constraints.ipady = 20;
@@ -29,6 +39,7 @@ public class MainUI {
         constraints.weightx = 1;
         constraints.insets = new Insets(10, 10, 10, 10);
 
+        //Init the image icon for main menu.
         ImageIcon image = new ImageIcon("image/chess_menu.png");
         JLabel imageLogo = new JLabel();
         imageLogo.setIcon(image);
@@ -36,11 +47,13 @@ public class MainUI {
         constraints.gridy = 0;
         viewHolder.add(imageLogo, constraints);
 
+        //Main menu title
         JLabel menuLabel = new JLabel("Webale Chess", SwingConstants.CENTER);
         menuLabel.setFont(new Font("Calibri", Font.BOLD, 30));
         constraints.gridy = 1;
         viewHolder.add(menuLabel, constraints);
 
+        //New Game Button
         JButton newGameBtn = new JButton("New Game");
         constraints.gridy = 2;
         newGameBtn.addActionListener(e -> {
@@ -49,6 +62,7 @@ public class MainUI {
         });
         viewHolder.add(newGameBtn, constraints);
 
+        //Continue Game Button
         JButton continueGameBtn = new JButton("Continue Game");
         constraints.gridy = 3;
         continueGameBtn.addActionListener(e -> {
@@ -57,6 +71,7 @@ public class MainUI {
         });
         viewHolder.add(continueGameBtn, constraints);
 
+        //Help button
         JButton gameInstrucBtn = new JButton("Help");
         constraints.gridy = 4;
         gameInstrucBtn.addActionListener(e -> displayHelp(viewHolder));
@@ -65,7 +80,12 @@ public class MainUI {
         viewHolder.setVisible(true);
     }
 
+    /* Author: Lau Yee Keen Calvin
+       Desc: initialize and inflate the gameplay UI.
+     */
     public JButton[][] initGameView() {
+
+        //Cross platform look and feel
         try {
             UIManager.setLookAndFeel(
                     UIManager.getCrossPlatformLookAndFeelClassName());
@@ -83,6 +103,7 @@ public class MainUI {
         constraints.ipadx = 5;
         constraints.ipady = 5;
         constraints.insets = new Insets(5, 5, 5, 5);
+
 
         JLabel userTurnName = new JLabel();
         userTurnName.setFont(new Font("Calibri", Font.BOLD, 30));
