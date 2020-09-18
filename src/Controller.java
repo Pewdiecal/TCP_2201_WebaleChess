@@ -64,10 +64,18 @@ public class Controller {
     }
 
     public void createNewGame() {
-        board.addPlayer(mainUI.displayDialog(viewHolder, 1), 0);
-        board.addPlayer(mainUI.displayDialog(viewHolder, 2), 1);
-        board.reloadNewState();
-        chessHolder = mainUI.initGameView();
+        String player1 = mainUI.displayDialog(viewHolder, 1);
+        String player2;
+        if (player1 != null) {
+            player2 = mainUI.displayDialog(viewHolder, 2);
+            if (player2 != null) {
+                board.addPlayer(player1, 0);
+                board.addPlayer(player2, 1);
+                board.reloadNewState();
+                chessHolder = mainUI.initGameView();
+                viewHolder.dispose();
+            }
+        }
     }
 
     public void restartGame() {
