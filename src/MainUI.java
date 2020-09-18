@@ -197,8 +197,18 @@ public class MainUI {
         return JOptionPane.showInputDialog(viewHolder, "Enter Player " + i + " name");
     }
 
+    //Muhammad Hidayat Bin Jauhari
+    //To print out the instructions on how each of the pieces move
     public void displayHelp(JFrame viewHolder) {
-        JOptionPane.showMessageDialog(viewHolder, controller.getHelp());
+        JOptionPane.showMessageDialog(viewHolder, "Sun          - It can only move one step in any direction. The game\n                   ends when the Sun is captured by the other side.\n" +
+                "\n" +
+                "Chevron  - It moves in an L shape: 2 steps in one direction then\n                    1 step perpendicular to it. It is the only piece that can\n                    skip over the other pieces.\n" +
+                "\n" +
+                "Triangle   - It can move any number of steps diagonally.\n" +
+                "\n" +
+                "Plus          - It can move any number of steps up and down, or left and right.\n" +
+                "\n" +
+                "Arrow        - It can only move 1 or 2 steps forward each time, but when it reaches\n                    the other edge of the board, it turns around and heads back in the\n                    opposite direction.\n");
     }
 
     public void displayFileNotFound(JFrame viewHolder) {
