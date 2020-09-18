@@ -133,6 +133,7 @@ public class MainUI {
                     } else {
                         controller.setChessPosition(finalX, finalY);
                         userTurnName.setText("Current Turn : " + controller.getCurrentPlayerTurn());
+                        controller.checkGameWinner(viewHolder);
                     }
 
                 });

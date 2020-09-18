@@ -32,7 +32,6 @@ public class Controller {
     public void setChessPosition(int x, int y) {
         board.moveChess(getCurrentSelectedPosition()[0][0], getCurrentSelectedPosition()[0][1], x, y);
         refreshGameBoard();
-        checkGameWinner();
     }
 
     private void refreshGameBoard() {
@@ -97,10 +96,10 @@ public class Controller {
         return "";
     }
 
-    public void checkGameWinner() {
+    public void checkGameWinner(JFrame viewHolder) {
 
         if (board.getWinner() != null) {
-            JOptionPane.showMessageDialog(viewHolder, "Winner is " + board.getWinner().getPlayerName());
+            JOptionPane.showMessageDialog(this.viewHolder, "Winner is " + board.getWinner().getPlayerName());
             try {
                 fileManager.deleteAllSaveFile();
             } catch (NoSuchFileException noSuchFileException) {
@@ -108,9 +107,8 @@ public class Controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
         }
-        viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
-
     }
 
     public String getCurrentPlayerTurn() {
