@@ -122,7 +122,7 @@ public class Board implements Observer {
                                 if (chessList.getChessPiece().get(j).getChessPositionX() == toX
                                         && chessList.getChessPiece().get(j).getChessPositionY() == toY) {
                                     chessList.getChessPiece().get(j).setIsOnBoard(false);
-                                    if(chessList.getChessPiece().get(j).getChessName().matches("Sun")){
+                                    if(chessList.getChessPiece().get(j).getChessName().contains("Sun")){
                                         winner = chessList.getChessPiece().get(i).getChessOwner();
                                     }
 
