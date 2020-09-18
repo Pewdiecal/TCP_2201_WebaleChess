@@ -264,10 +264,13 @@ public class MainUI {
         int a = JOptionPane.showConfirmDialog(viewHolder, "Do you want to save the progress?");
         if (a == JOptionPane.YES_OPTION) {
             controller.saveState();
-        } else {
+            viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
+            initView(mainUI);
+        } else if (a == JOptionPane.NO_OPTION) {
             controller.deleteAllSaved();
+            viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
+            initView(mainUI);
         }
-        viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
-        initView(mainUI);
+
     }
 }
