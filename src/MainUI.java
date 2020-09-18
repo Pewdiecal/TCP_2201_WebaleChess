@@ -65,7 +65,6 @@ public class MainUI {
         constraints.gridy = 3;
         continueGameBtn.addActionListener(e -> {
             controller.continueGame();
-            viewHolder.dispose();
         });
         viewHolder.add(continueGameBtn, constraints);
 

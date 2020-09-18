@@ -86,6 +86,7 @@ public class Controller {
     public void continueGame() {
         try {
             board.loadState();
+            viewHolder.dispose();
             chessHolder = mainUI.initGameView();
         } catch (FileNotFoundException e) {
             mainUI.displayFileNotFound(viewHolder);
