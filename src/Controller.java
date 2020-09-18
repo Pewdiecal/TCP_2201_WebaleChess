@@ -8,12 +8,12 @@ import java.nio.file.NoSuchFileException;
 
 public class Controller {
 
-    MainUI mainUI;
-    JFrame viewHolder;
-    Board board = Board.getInstance();
-    FileManager fileManager = new FileManager();
-    int[][] currentSelectedPosition = {{-1, -1}};
-    JButton[][] chessHolder;
+    private MainUI mainUI;
+    private JFrame viewHolder;
+    private Board board = Board.getInstance();
+    private FileManager fileManager = new FileManager();
+    private int[][] currentSelectedPosition = {{-1, -1}};
+    private JButton[][] chessHolder;
 
     Controller(MainUI mainUI, JFrame viewHolder) {
         this.mainUI = mainUI;
