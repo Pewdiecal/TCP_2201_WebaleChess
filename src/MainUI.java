@@ -12,9 +12,9 @@ import java.awt.event.WindowEvent;
  * @since 2020-09-18
  */
 public class MainUI {
-    Controller controller;
-    final int BOARD_WIDTH = 7;
-    final int BOARD_HEIGHT = 8;
+    private Controller controller;
+    private final int BOARD_WIDTH = 7;
+    private final int BOARD_HEIGHT = 8;
 
     public static void main(String[] args) {
         MainUI mainUI = new MainUI();
