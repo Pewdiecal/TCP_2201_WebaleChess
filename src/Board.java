@@ -9,6 +9,7 @@ public class Board implements Observer {
     private FileManager fileManager;
     private final Player[] players = new Player[2];
     private static Board instance = null;
+    private Player winner;
 
     private Board() {
         this.chessList = new ChessCollection();
@@ -120,9 +121,10 @@ public class Board implements Observer {
                             for (int j = 0; j < chessList.getChessPiece().size(); j++) {
                                 if (chessList.getChessPiece().get(j).getChessPositionX() == toX
                                         && chessList.getChessPiece().get(j).getChessPositionY() == toY) {
-                                    System.out.println(chessList.getChessPiece().get(i).getChessPositionX() + " " + chessList.getChessPiece().get(i).getChessPositionY());
                                     chessList.getChessPiece().get(j).setIsOnBoard(false);
-                                    System.out.println(chessList.getChessPiece().get(i).getChessPositionX() + " " + chessList.getChessPiece().get(i).getChessPositionY());
+                                    if(chessList.getChessPiece().get(j).getChessName().matches("Sun")){
+                                        winner = chessList.getChessPiece().get(i).getChessOwner();
+                                    }
 
                                 }
                             }
@@ -138,6 +140,10 @@ public class Board implements Observer {
                 }
             }else{break;}
         }
+    }
+
+    public Player getWinner() {
+        return winner;
     }
 
     //DONE
