@@ -65,6 +65,7 @@ public class MainUI {
         constraints.gridy = 3;
         continueGameBtn.addActionListener(e -> {
             controller.continueGame();
+            viewHolder.dispose();
         });
         viewHolder.add(continueGameBtn, constraints);
 
@@ -218,7 +219,6 @@ public class MainUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 displayConfirmDialog(viewHolder);
-                viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
             }
         });
 
@@ -264,8 +264,10 @@ public class MainUI {
         int a = JOptionPane.showConfirmDialog(viewHolder, "Do you want to save the progress?");
         if (a == JOptionPane.YES_OPTION) {
             controller.saveState();
-            viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
-            initView(mainUI);
+        } else {
+            controller.deleteAllSaved();
         }
+        viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
+        initView(mainUI);
     }
 }

@@ -146,4 +146,14 @@ public class Controller {
     public int[][] getPossibleMoves(int x, int y) {
         return board.getPossibleMoves(x, y);
     }
+
+    public void deleteAllSaved() {
+        try {
+            fileManager.deleteAllSaveFile();
+        } catch (NoSuchFileException noSuchFileException) {
+            System.out.println("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
