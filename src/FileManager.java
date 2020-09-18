@@ -92,4 +92,9 @@ public class FileManager {
         return chessCollection;
     }
 
+    public void deleteAllSaveFile() throws IOException {
+        Path path = Paths.get("savedGameFile/savedProgress.txt");
+        Files.delete(path);
+    }
+
 }

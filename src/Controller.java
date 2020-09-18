@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,6 +10,7 @@ public class Controller {
     MainUI mainUI;
     JFrame viewHolder;
     Board board = Board.getInstance();
+    FileManager fileManager = new FileManager();
     int[][] currentSelectedPosition = {{-1, -1}};
     JButton[][] chessHolder;
 
@@ -29,6 +31,7 @@ public class Controller {
     public void setChessPosition(int x, int y) {
         board.moveChess(getCurrentSelectedPosition()[0][0], getCurrentSelectedPosition()[0][1], x, y);
         refreshGameBoard();
+        checkGameWinner();
     }
 
     private void refreshGameBoard() {
@@ -91,6 +94,22 @@ public class Controller {
 
     public String getHelp() {
         return "";
+    }
+
+    public void checkGameWinner() {
+
+        if (board.getWinner() != null) {
+            JOptionPane.showMessageDialog(viewHolder, "Winner is " + board.getWinner().getPlayerName());
+            try {
+                fileManager.deleteAllSaveFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("asdasdasdadsa");
+        }
+        viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
+
     }
 
     public String getCurrentPlayerTurn() {
