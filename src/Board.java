@@ -67,6 +67,7 @@ public class Board implements Observer {
     //paste it in the object with players[1] only
     //make sure the img u imported is 64x64
     public void reloadNewState() {
+        chessList.getChessPiece().clear();
         for (int arrow = 0; arrow < 8; arrow += 2) {
             chessList.addChess(new Arrow("Blue Arrow", "image/BlueArrow.png", arrow,
                     1, players[1]));
@@ -138,12 +139,18 @@ public class Board implements Observer {
                         }
                     }
                 }
-            }else{break;}
+            } else {
+                break;
+            }
         }
     }
 
     public Player getWinner() {
         return winner;
+    }
+
+    public void nullifyWinner() {
+        winner = null;
     }
 
     //Nicholas Chee Jian Shen

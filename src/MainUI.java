@@ -1,8 +1,8 @@
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 /**
  * This is the MainUI class that responsible to display
@@ -12,12 +12,13 @@ import java.awt.event.WindowEvent;
  * @since 2020-09-18
  */
 public class MainUI {
-    private Controller controller;
+
+    private static MainUI mainUI = new MainUI();
+    private static Controller controller;
     private final int BOARD_WIDTH = 7;
     private final int BOARD_HEIGHT = 8;
 
     public static void main(String[] args) {
-        MainUI mainUI = new MainUI();
         mainUI.initView(mainUI); //initialize the menu screen
     }
 
@@ -94,6 +95,10 @@ public class MainUI {
             e.printStackTrace();
         }
 
+        JMenuBar menuBar = new JMenuBar();
+        JMenu gameOptionMenu = new JMenu("Game Options");
+        gameOptionMenu.setMnemonic(KeyEvent.VK_F);
+
         JFrame viewHolder = new JFrame();
         GridBagConstraints constraints = new GridBagConstraints();
         viewHolder.setSize(1100, 800);
@@ -104,7 +109,7 @@ public class MainUI {
         constraints.ipady = 5;
         constraints.insets = new Insets(5, 5, 5, 5);
 
-
+        //Player's turn label
         JLabel userTurnName = new JLabel();
         userTurnName.setFont(new Font("Calibri", Font.BOLD, 30));
         userTurnName.setText("Current Turn : " + controller.getCurrentPlayerTurn());
@@ -115,6 +120,7 @@ public class MainUI {
         userTurnName.setMaximumSize(new Dimension(100, 100));
         viewHolder.add(userTurnName, constraints);
 
+        //Exit button
         JButton exitBtn = new JButton("Exit Game");
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -125,6 +131,7 @@ public class MainUI {
         });
         viewHolder.add(exitBtn, constraints);
 
+        //Chess holder button
         JButton[][] chessHolder = new JButton[BOARD_HEIGHT][BOARD_WIDTH];
         constraints.weightx = 0.5;
         constraints.weighty = 0.5;
@@ -139,19 +146,24 @@ public class MainUI {
             for (int w = 0; w < BOARD_WIDTH; w++) {
                 chessHolder[i][w] = new JButton();
                 chessHolder[i][w].setMinimumSize(new Dimension(210, 210));
-                chessHolder[i][w].setBackground(new Color(204, 255, 255));
+                chessHolder[i][w].setBackground(new Color(204, 255, 255)); //light blue color
                 int finalX = w; //X
                 int finalY = i; //Y
                 chessHolder[i][w].addActionListener(e -> {
 
+                    //check if its the first click and display the possible moves for that particular chess
                     if (controller.getCurrentSelectedPosition()[0][0] == -1 ||
                             controller.getCurrentSelectedPosition()[0][1] == -1) {
                         controller.setCurrentSelectedPosition(finalX, finalY);
-                        chessHolder[finalY][finalX].setBackground(new Color(153, 255, 153));
+                        chessHolder[finalY][finalX].setBackground(new Color(153, 255, 153)); //light green color
+
+                        //display the possible moves
                         for (int[] positions : controller.getPossibleMoves(finalX, finalY)) {
                             chessHolder[positions[1]][positions[0]].setBackground(new Color(153, 255, 153));
                         }
+
                     } else {
+                        //if its the 2nd click, move the chess to the new position
                         controller.setChessPosition(finalX, finalY);
                         userTurnName.setText("Current Turn : " + controller.getCurrentPlayerTurn());
                         controller.checkGameWinner(viewHolder);
@@ -166,6 +178,8 @@ public class MainUI {
                         JButton btn = (JButton) e.getComponent();
                         Dimension size = btn.getSize();
                         Insets insets = btn.getInsets();
+
+                        //image size will be calculated based on the border size of the button
                         size.width -= insets.left + insets.right;
                         size.height -= insets.top + insets.bottom;
                         if (size.width > size.height) {
@@ -189,10 +203,53 @@ public class MainUI {
             constraints.gridx = 0;
             constraints.gridy++;
         }
+        JMenuItem restartGameOption = new JMenuItem("Restart Game");
+        restartGameOption.setMnemonic(KeyEvent.VK_F);
+        restartGameOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int a = JOptionPane.showConfirmDialog(viewHolder, "Do you want to restart the game?");
+                if (a == JOptionPane.YES_OPTION) {
+                    viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
+                    controller.restartGame();
+                }
+            }
+        });
+
+        JMenuItem exitMainMenuOption = new JMenuItem("Exit Main Menu");
+        exitMainMenuOption.setMnemonic(KeyEvent.VK_K);
+        exitMainMenuOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayConfirmDialog(viewHolder);
+                viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
+                initView(mainUI);
+            }
+        });
+
+        JMenuItem helpOption = new JMenuItem("Help");
+        helpOption.setMnemonic(KeyEvent.VK_K);
+        helpOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayHelp(viewHolder);
+            }
+        });
+
+        menuBar.add(gameOptionMenu);
+        gameOptionMenu.add(restartGameOption);
+        gameOptionMenu.add(exitMainMenuOption);
+        gameOptionMenu.add(helpOption);
+
+        viewHolder.setJMenuBar(menuBar);
         viewHolder.setVisible(true);
+
         return chessHolder;
     }
 
+    /* Author: Lau Yee Keen Calvin
+       Desc: display the enter player's name dialog
+     */
     public String displayDialog(JFrame viewHolder, int i) {
         return JOptionPane.showInputDialog(viewHolder, "Enter Player " + i + " name");
     }
@@ -201,20 +258,7 @@ public class MainUI {
        Desc: To print out the instructions on how each of the pieces move.
      */
     public void displayHelp(JFrame viewHolder) {
-        JOptionPane.showMessageDialog(viewHolder, "Sun          - It can only move one step in any " +
-                "direction. The game\n                   ends when the Sun is captured by the other side.\n" +
-                "\n" +
-                "Chevron  - It moves in an L shape: 2 steps in one direction then\n                    " +
-                "1 step perpendicular to it. It is the only piece that can\n                    skip over the " +
-                "other pieces.\n" +
-                "\n" +
-                "Triangle   - It can move any number of steps diagonally.\n" +
-                "\n" +
-                "Plus          - It can move any number of steps up and down, or left and right.\n" +
-                "\n" +
-                "Arrow        - It can only move 1 or 2 steps forward each time, but when it " +
-                "reaches\n                    the other edge of the board, it turns around and heads back in " +
-                "the\n                    opposite direction.\n");
+        JOptionPane.showMessageDialog(viewHolder, controller.getHelp());
     }
 
     public void displayFileNotFound(JFrame viewHolder) {
@@ -227,5 +271,6 @@ public class MainUI {
             controller.saveState();
         }
         viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
+        initView(mainUI);
     }
 }
