@@ -1,18 +1,26 @@
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-abstract class ChessPiece implements Chess, Observable {
+public class ChessPiece implements Chess, Observable {
+    private static int accumulator;
+
+    public Board getBoard() {
+        return board;
+    }
+
+    private transient final Board board = Board.getInstance();
     private int chessPositionX;
     private int chessPositionY;
     private final String chessName;
     private String chessImgPath;
     private transient BufferedImage bufferedImage;
     private boolean isOnBoard = true;
-    private boolean arrowRotation = true;
+    private boolean arrowRotation = false;
+    private boolean triangleRotation = false;
     private Player chessOwner;
     private final ArrayList<int[]> possibleMovesArray = new ArrayList<>();
 
@@ -67,11 +75,50 @@ abstract class ChessPiece implements Chess, Observable {
     }
 
     public void setChessPosition(int x, int y) {
+        ArrayList<ChessPiece> temp = new ArrayList<>();
         this.chessPositionX = x;
         this.chessPositionY = y;
-        if(y == 7) {
+
+        if (y == 7 && chessName.contains("Arrow")) {
             this.arrowRotation = false;
+            rotateImg();
+        } else if (y == 0 && chessName.contains("Arrow")) {
+            this.arrowRotation = true;
+            rotateImg();
         }
+
+        accumulator++;
+
+        if (accumulator % 4 == 0) {
+            Iterator<ChessPiece> iterator = board.getChessList().getChessPiece().iterator();
+            while (iterator.hasNext()) {
+                ChessPiece cp = iterator.next();
+                int positionX = cp.getChessPositionX();
+                int positionY = cp.getChessPositionY();
+                Player player = cp.getChessOwner();
+                switch (cp.getChessName()) {
+                    case "Blue Triangle":
+                        iterator.remove();
+                        temp.add(new Plus("Blue Plus", "image/BluePlus.png", positionX, positionY, player));
+                        break;
+                    case "Blue Plus":
+                        iterator.remove();
+                        temp.add(new Triangle("Blue Triangle", "image/BlueTriangle.png", positionX, positionY, player));
+                        break;
+                    case "Red Triangle":
+                        iterator.remove();
+                        temp.add(new Plus("Red Plus", "image/RedPlus.png", positionX, positionY, player));
+                        break;
+                    case "Red Plus":
+                        iterator.remove();
+                        temp.add(new Triangle("Red Triangle", "image/RedTriangle.png", positionX, positionY, player));
+                        break;
+                }
+            }
+            board.getChessList().getChessPiece().addAll(temp);
+        }
+
+
     }
 
     public void setChessImage(String imgPath) {
@@ -89,15 +136,27 @@ abstract class ChessPiece implements Chess, Observable {
 
     //img rotation func << its done
     public void rotateImg() {
+
         int w = bufferedImage.getWidth();
         int h = bufferedImage.getHeight();
 
         BufferedImage rotated = new BufferedImage(w, h, bufferedImage.getType());
-        Graphics2D graphic = rotated.createGraphics();
-        graphic.rotate(Math.toRadians(180), w / 2, h / 2);
-        graphic.drawImage(bufferedImage, null, 0, 0);
-        graphic.dispose();
+
+        if(!chessImgPath.contains("Rev")){ //If the image is not rotated
+            chessImgPath = chessImgPath.substring(0, chessImgPath.length()-4) + "Rev.png";
+        }
+        else{ //If the image is rotated
+            chessImgPath = chessImgPath.substring(0, chessImgPath.length()-7) + ".png";
+        }
+
+        try {
+            rotated = ImageIO.read(new File(chessImgPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         bufferedImage = rotated;
+
     }
 
     public String getImgPath() {
@@ -108,11 +167,16 @@ abstract class ChessPiece implements Chess, Observable {
         return this.possibleMovesArray;
     }
 
-    public abstract ArrayList<int[]> generatePossibleMoves();
+    public ArrayList<int[]> generatePossibleMoves() {
+        return null;
+    }
 
     @Override
     public void flipPosition() {
         //Flip the position of this single chess when a successful chess move is detected
+        this.chessPositionX = 6 - chessPositionX;
+        this.chessPositionY = 7 - chessPositionY;
+        rotateImg();
     }
 
     @Override

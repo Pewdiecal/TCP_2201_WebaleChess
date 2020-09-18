@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 public class MainUI {
     Controller controller;
@@ -132,6 +133,7 @@ public class MainUI {
                     } else {
                         controller.setChessPosition(finalX, finalY);
                         userTurnName.setText("Current Turn : " + controller.getCurrentPlayerTurn());
+                        controller.checkGameWinner(viewHolder);
                     }
 
                 });
@@ -188,6 +190,5 @@ public class MainUI {
             controller.saveState();
         }
         viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
-
     }
 }

@@ -1,14 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
 public class Controller {
 
     MainUI mainUI;
     JFrame viewHolder;
-    Board board = new Board();
+    Board board = Board.getInstance();
+    FileManager fileManager = new FileManager();
     int[][] currentSelectedPosition = {{-1, -1}};
     JButton[][] chessHolder;
 
@@ -61,8 +64,8 @@ public class Controller {
     }
 
     public void createNewGame() {
-        board.addPlayer(mainUI.displayDialog(viewHolder, 1));
-        board.addPlayer(mainUI.displayDialog(viewHolder, 2));
+        board.addPlayer(mainUI.displayDialog(viewHolder, 1), 0);
+        board.addPlayer(mainUI.displayDialog(viewHolder, 2), 1);
         board.reloadNewState();
         chessHolder = mainUI.initGameView();
     }
@@ -91,6 +94,21 @@ public class Controller {
 
     public String getHelp() {
         return "";
+    }
+
+    public void checkGameWinner(JFrame viewHolder) {
+
+        if (board.getWinner() != null) {
+            JOptionPane.showMessageDialog(this.viewHolder, "Winner is " + board.getWinner().getPlayerName());
+            try {
+                fileManager.deleteAllSaveFile();
+            } catch (NoSuchFileException noSuchFileException) {
+                System.out.println("");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
+        }
     }
 
     public String getCurrentPlayerTurn() {
