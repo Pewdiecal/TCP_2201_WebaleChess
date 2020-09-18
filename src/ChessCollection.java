@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//class for a collection of ChessPiece in a list
 public class ChessCollection implements Chess {
     private ArrayList<ChessPiece> chessPieces = new ArrayList<>();
 

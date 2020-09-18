@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// class for Triangle chess that inherited from ChessPiece
 public class Triangle extends ChessPiece {
 
     Triangle(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// class for Chevron chess that inherited from ChessPiece
 public class Chevron extends ChessPiece {
     Chevron(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);
