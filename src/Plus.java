@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// class for Plus chess that inherited from ChessPiece
 public class Plus extends ChessPiece {
 
     Plus(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {

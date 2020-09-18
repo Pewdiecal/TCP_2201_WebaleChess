@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// class for Arrow chess that inherited from ChessPiece
 public class Arrow extends ChessPiece {
     Arrow(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);

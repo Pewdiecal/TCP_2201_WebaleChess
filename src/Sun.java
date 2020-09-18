@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// class for Sun chess that inherited from ChessPiece
 public class Sun extends ChessPiece {
 
     Sun(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {

@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
+//class for chess board
 public class Board implements Observer {
 
     private ChessCollection chessList;

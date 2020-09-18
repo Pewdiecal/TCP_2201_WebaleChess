@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+//class for ChessPiece
 public class ChessPiece implements Chess, Observable {
     private static int accumulator;
 
