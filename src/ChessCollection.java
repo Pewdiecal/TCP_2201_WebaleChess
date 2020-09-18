@@ -13,16 +13,19 @@ public class ChessCollection implements Chess {
         return chessPieces;
     }
 
+    //Chan Jin Xuan
+    //Flip all position of the chess by iterating it through all of the elements in the ArrayList
+    //While its iterating through the list, just call ChessPiece.flipPosition() since flipPosition in the
+    //chessPiece is implemented to flip a single chess
     @Override
     public void flipPosition() {
-        //Flip all position of the chess by iterating it through all of the elements in the ArrayList
-        //While its iterating through the list, just call ChessPiece.flipPosition() since flipPosition in the
-        //chessPiece is implemented to flip a single chess
         for(ChessPiece chessPiece: chessPieces){
             chessPiece.flipPosition();
         }
     }
 
+    //Chan Jin Xuan
+    //update the list after every valid movement
     public void updateList(){
         ArrayList<ChessPiece> temp = new ArrayList<>();
         for (int i = 0; i < chessPieces.size(); i++){
