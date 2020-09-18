@@ -70,10 +70,8 @@ public class ChessPiece implements Chess, Observable {
         return this.chessOwner;
     }
 
-    public void setChessOwner(Player player) {
-        this.chessOwner = player;
-    }
-
+    // Muhammad Hidayat Bin Jauhari, Mohamad Faris Bin Harunasir
+    // move the chess and count the movement made by the players to change triangles and pluses
     public void setChessPosition(int x, int y) {
         ArrayList<ChessPiece> temp = new ArrayList<>();
         this.chessPositionX = x;
@@ -134,7 +132,8 @@ public class ChessPiece implements Chess, Observable {
         return this.bufferedImage;
     }
 
-    //img rotation func << its done
+    //Nicholas Chee Jian Shen
+    //img rotation func
     public void rotateImg() {
 
         int w = bufferedImage.getWidth();
@@ -172,8 +171,9 @@ public class ChessPiece implements Chess, Observable {
     }
 
     @Override
+    //Chan Jin Xuan
+    //Flip the position of this single chess when a successful chess move is detected
     public void flipPosition() {
-        //Flip the position of this single chess when a successful chess move is detected
         this.chessPositionX = 6 - chessPositionX;
         this.chessPositionY = 7 - chessPositionY;
         rotateImg();

@@ -19,6 +19,8 @@ public class Board implements Observer {
         return chessList;
     }
 
+    //Lau Yee Keen Calvin
+    //singleton design pattern where there is just a board instance created during the game
     public static Board getInstance() {
         if (instance == null) {
             instance = new Board();
@@ -26,14 +28,14 @@ public class Board implements Observer {
         return instance;
     }
 
-    //DONE
+    //Lau Yee Keen Calvin
     //save the current state of the game
     public void saveState() throws IOException {
         fileManager = new FileManager(chessList);
         fileManager.writeToFile();
     }
 
-    //DONE
+    //Lau Yee Keen Calvin
     //Load the saved game file from directory
     public void loadState() throws FileNotFoundException { //players turn needs to be set asap
         fileManager = new FileManager();
@@ -56,7 +58,7 @@ public class Board implements Observer {
 
     }
 
-    //DONE
+    //Lau Yee Keen Calvin
     //Fresh start a game
     //We need another color of img to represent the opponent cuz we only hav blue
     //import the img assets into the image directory
@@ -64,7 +66,6 @@ public class Board implements Observer {
     //paste it in the object with players[1] only
     //make sure the img u imported is 64x64
     public void reloadNewState() {
-        //optimize this part of the code if u want to
         for (int arrow = 0; arrow < 8; arrow += 2) {
             chessList.addChess(new Arrow("Blue Arrow", "image/BlueArrow.png", arrow,
                     1, players[1]));
@@ -101,9 +102,9 @@ public class Board implements Observer {
                 7, players[0]));
     }
 
-    //DONE
+    //Nicholas Chee Jian Shen, Chan Jin Xuan
     //move the chess position fromX, fromY to toX, toY
-    //this is called from my controller to move the chess
+    //this is called from controller to move the chess
     //use the fromX, fromY coordinates to determine what chess is at that coordinate
     //Check possible move condition before hand. Use coordinate to check what piece, overwrite/change new position
     public void moveChess(int fromX, int fromY, int toX, int toY) {
@@ -122,15 +123,13 @@ public class Board implements Observer {
                                 if (chessList.getChessPiece().get(j).getChessPositionX() == toX
                                         && chessList.getChessPiece().get(j).getChessPositionY() == toY) {
                                     chessList.getChessPiece().get(j).setIsOnBoard(false);
-                                    if(chessList.getChessPiece().get(j).getChessName().contains("Sun")){
+                                    if(chessList.getChessPiece().get(j).getChessName().contains("Sun")){ //if the "Sun" is dead the chessOwner of the chess which ate the sun wins
                                         winner = chessList.getChessPiece().get(i).getChessOwner();
                                     }
 
                                 }
                             }
-                            System.out.println("Came here");
                             chessList.getChessPiece().get(i).setChessPosition(toX, toY);
-                            System.out.println("Went out");
                             onChessMove();
                             pass = false;
                             chessList.updateList();
@@ -146,7 +145,7 @@ public class Board implements Observer {
         return winner;
     }
 
-    //DONE
+    //Nicholas Chee Jian Shen
     //When a chess move is successful, this will get called
     @Override
     public void onChessMove() {
@@ -158,18 +157,17 @@ public class Board implements Observer {
         }
     }
 
-    //DONE
+    //Chan Jin Xuan
     //create and assign each player to both side of the chess
-    public void addPlayer(String playerName, int index) { //players turn needs to be set before calling reloadNewState << solve this
+    public void addPlayer(String playerName, int index) {
         players[index] = new Player(playerName, index + 1);
         if (index == 0) {
             players[index].setPlayerTurn(true); // Player 1 is assigned Turn 1
         }
     }
 
-    //DONE
+    //Chan Jin Xuan
     //return back the current player's turn name
-    //i will call this method from my controller class, u just need to provide the implementation below
     public String getCurrentPlayerName() {
         for (Player player : players) {
             if (player.getPlayerTurn()) {
@@ -179,8 +177,8 @@ public class Board implements Observer {
         return null;
     }
 
-    //DONE
-    //return the actual img of the chess to be displayed on the JButton <<< its done
+    //Nicholas Chee Jian Shen
+    //return the actual img of the chess to be displayed on the JButton
     public BufferedImage getChessPieceImg(int x, int y) {
         for (ChessPiece chessPiece : chessList.getChessPiece()) {
             if (chessPiece.getChessPositionX() == x && chessPiece.getChessPositionY() == y) {
@@ -190,11 +188,8 @@ public class Board implements Observer {
         return null;
     }
 
-    //DONE
-    //return the lists of possible move to my controller so that i can show the green boxes
-    //use the x,y coordinates to get that chess's possible move
-    //since ur passing in arraylist, convert the arraylist by using toArray() to plain array before return it to me
-    //Transfer info from Chess to Controller
+    //Nicholas Chee Jian Shen, Chan Jin Xuan
+    //return the lists of possible move to controller to show the green boxes
     public int[][] getPossibleMoves(int fromX, int fromY) {
         int[][] possibleMoves = new int[0][];
         for (ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece

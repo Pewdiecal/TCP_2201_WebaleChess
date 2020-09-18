@@ -5,6 +5,8 @@ public class Chevron extends ChessPiece {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);
     }
 
+    // Muhammad Hidayat Bin Jauhari, Mohamad Faris Bin Harunasir
+    // generate the possible moves for the selected chevron
     @Override
     public ArrayList<int[]> generatePossibleMoves() {
         int x = getChessPositionX();
@@ -13,7 +15,6 @@ public class Chevron extends ChessPiece {
         super.getPossibleMovesArray().clear();
 
         if(getChessOwner().getPlayerTurn()) {
-            //algorithm to not eat teammates
             if (x + 1 <= 6 && y - 2 >= 0) {
                 int[] tempRef = new int[]{x + 1, y - 2};
                 super.getPossibleMovesArray().add(tempRef);

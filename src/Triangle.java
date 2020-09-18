@@ -6,6 +6,8 @@ public class Triangle extends ChessPiece {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);
     }
 
+    // Muhammad Hidayat Bin Jauhari, Mohamad Faris Bin Harunasir
+    // generate the possible moves for the selected triangle
     @Override
     public ArrayList<int[]> generatePossibleMoves() {
 
