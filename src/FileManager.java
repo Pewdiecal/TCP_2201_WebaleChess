@@ -3,6 +3,7 @@ import com.google.gson.*;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -92,7 +93,7 @@ public class FileManager {
         return chessCollection;
     }
 
-    public void deleteAllSaveFile() throws IOException {
+    public void deleteAllSaveFile() throws IOException, NoSuchFileException {
         Path path = Paths.get("savedGameFile/savedProgress.txt");
         Files.delete(path);
     }

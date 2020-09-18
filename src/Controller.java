@@ -4,6 +4,7 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
 public class Controller {
 
@@ -102,11 +103,11 @@ public class Controller {
             JOptionPane.showMessageDialog(viewHolder, "Winner is " + board.getWinner().getPlayerName());
             try {
                 fileManager.deleteAllSaveFile();
+            } catch (NoSuchFileException noSuchFileException) {
+                System.out.println("");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("asdasdasdadsa");
         }
         viewHolder.dispatchEvent(new WindowEvent(viewHolder, WindowEvent.WINDOW_CLOSING));
 
