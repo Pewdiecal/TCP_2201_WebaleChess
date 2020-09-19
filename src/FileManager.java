@@ -1,6 +1,4 @@
 import com.google.gson.*;
-
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -8,6 +6,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * This is the MainUI class that is responsible for displaying the main menu UI and the gameplay UI.
+ *
+ * @author Lau Yee Keen Calvin
+ */
 public class FileManager {
     private ChessCollection chessCollection;
 

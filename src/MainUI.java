@@ -3,11 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * This is the MainUI class that responsible to display
- * the main menu UI and the gameplay UI.
+ * This is the MainUI class that is responsible for displaying the main menu UI and the gameplay UI.
  *
- * @version 1.0
- * @since 2020-09-18
+ * @author Lau Yee Keen Calvin
  */
 public class MainUI {
 
@@ -16,12 +14,19 @@ public class MainUI {
     private final int BOARD_WIDTH = 7;
     private final int BOARD_HEIGHT = 8;
 
+    /**
+     * This is the main method that initializes the menu screen.
+     * @param args Unused.
+     * @author Lau Yee Keen Calvin
+     */
     public static void main(String[] args) {
         mainUI.initView(mainUI); //initialize the menu screen
     }
 
-    /* Author: Lau Yee Keen Calvin
-       Desc: initialize and inflate the main menu screen
+    /**
+     * This is the method that initializes the controller and the layout for the main menu.
+     * @param mainUI The mainUI object to be initialized.
+     * @author Lau Yee Keen Calvin
      */
     public void initView(MainUI mainUI) {
         JFrame viewHolder = new JFrame();
@@ -77,8 +82,10 @@ public class MainUI {
         viewHolder.setVisible(true);
     }
 
-    /* Author: Lau Yee Keen Calvin
-       Desc: initialize and inflate the gameplay UI.
+    /**
+     * This is the method that initializes and inflates the gameplay UI.
+     * @return The chess holders.
+     * @author Lau Yee Keen Calvin
      */
     public JButton[][] initGameView() {
 
@@ -241,24 +248,36 @@ public class MainUI {
         return chessHolder;
     }
 
-    /* Author: Lau Yee Keen Calvin
-       Desc: display the enter player's name dialog
+    /**
+     * This is the method that displays the "enter player's name" dialog.
+     * @param viewHolder The view holder.
+     * @param i The player number.
+     * @return The "enter player's name" dialog.
+     * @author Lau Yee Keen Calvin
      */
     public String displayDialog(JFrame viewHolder, int i) {
         return JOptionPane.showInputDialog(viewHolder, "Enter Player " + i + " name");
     }
 
-    /* Author: Muhammad Hidayat Bin Jauhari
-       Desc: To print out the instructions on how each of the pieces move.
+    /**
+     * This is the method that prints out the instructions on how each of the pieces move.
+     * @param viewHolder The view holder.
+     * @author Muhammad Hidayat Bin Jauhari
      */
     public void displayHelp(JFrame viewHolder) {
         JOptionPane.showMessageDialog(viewHolder, controller.getHelp());
     }
 
+    /**
+     * This is the method that displays a message when no previous game files are found.
+     * @param viewHolder The view holder.
+     * @author Lau Yee Keen Calvin
+     */
     public void displayFileNotFound(JFrame viewHolder) {
         JOptionPane.showMessageDialog(viewHolder, "No game file found. Loading new game.");
     }
 
+    //@author Lau Yee Keen Calvin
     private void displayConfirmDialog(JFrame viewHolder) {
         int a = JOptionPane.showConfirmDialog(viewHolder, "Do you want to save the progress?");
         if (a == JOptionPane.YES_OPTION) {

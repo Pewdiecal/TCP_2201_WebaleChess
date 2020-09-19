@@ -5,7 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-//class for ChessPiece
+/**
+ * The ChessPiece class defines the properties of a chess piece.
+ *
+ * @author Muhammad Hidayat Bin Jauhari
+ * @author Mohammad Faris Bin Harunasir
+ */
 public class ChessPiece implements Chess, Observable {
     private static int accumulator;
 
@@ -25,54 +30,90 @@ public class ChessPiece implements Chess, Observable {
     private Player chessOwner;
     private final ArrayList<int[]> possibleMovesArray = new ArrayList<>();
 
+    /**
+     * This is the constructor that passes the chess piece's name, image, position and owner to its attributes.
+     * @param chessName The chess piece's name.
+     * @param chessImgPath The chess piece's image path.
+     * @param chessPositionX The chess piece's X coordinate position.
+     * @param chessPositionY The chess piece's Y coordinate position.
+     * @param chessOwner The chess piece's owner.
+     * @author Lau Yee Keen Calvin
+     */
     ChessPiece(String chessName, String chessImgPath, int chessPositionX, int chessPositionY, Player chessOwner) {
         this.chessName = chessName;
         this.chessPositionX = chessPositionX;
         this.chessPositionY = chessPositionY;
         this.chessOwner = chessOwner;
         this.chessImgPath = chessImgPath;
-        //read in the img of the chess
+        //Read in the image of the chess
         try {
             bufferedImage = ImageIO.read(new File(chessImgPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //rotate the img from the opposite site for 180 degree
+        //Rotate the image from the opposite side for 180 degrees
         if (!chessOwner.getPlayerTurn()) {
             rotateImg();
         }
     }
 
+    /**
+     * @return The chess piece's X coordinate position.
+     */
     public int getChessPositionX() {
         return this.chessPositionX;
     }
 
+    /**
+     * @return The chess piece's Y coordinate position.
+     */
     public int getChessPositionY() {
         return this.chessPositionY;
     }
 
+    /**
+     * @return The chess piece's arrow rotation.
+     */
     public boolean getArrowRotation() {
         return this.arrowRotation;
     }
 
+    /**
+     * @return The chess piece's name.
+     */
     public String getChessName() {
         return this.chessName;
     }
 
+    /**
+     * @return Whether the chess piece is on the board.
+     */
     public boolean isOnBoard() {
         return this.isOnBoard;
     }
 
+    /**
+     * @param isOnBoard To set whether the chess piece is on the board.
+     */
     public void setIsOnBoard(boolean isOnBoard) {
         this.isOnBoard = isOnBoard;
     }
 
+    /**
+     * @return The chess piece's owner.
+     */
     public Player getChessOwner() {
         return this.chessOwner;
     }
 
-    // Muhammad Hidayat Bin Jauhari, Mohamad Faris Bin Harunasir
-    // move the chess and count the movement made by the players to change triangles and pluses
+    /**
+     * This is the method that moves the chess piece and
+     * counts the movement made by the players to change the triangles and pluses.
+     * @param x The x coordinate position.
+     * @param y The y coordinate position.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     public void setChessPosition(int x, int y) {
         ArrayList<ChessPiece> temp = new ArrayList<>();
         this.chessPositionX = x;
@@ -120,6 +161,9 @@ public class ChessPiece implements Chess, Observable {
 
     }
 
+    /**
+     * @param imgPath The chess piece's image path.
+     */
     public void setChessImage(String imgPath) {
         this.chessImgPath = imgPath;
         try {
@@ -129,12 +173,17 @@ public class ChessPiece implements Chess, Observable {
         }
     }
 
+    /**
+     * @return The chess piece's actual image.
+     */
     public BufferedImage getChessImg() {
         return this.bufferedImage;
     }
 
-    //Nicholas Chee Jian Shen
-    //img rotation func
+    /**
+     * This is the method that changes the chess piece's image to a rotated version or vice versa.
+     * @author Nicholas Chee Jian Shen
+     */
     public void rotateImg() {
 
         int w = bufferedImage.getWidth();
@@ -159,21 +208,34 @@ public class ChessPiece implements Chess, Observable {
 
     }
 
+    /**
+     * @return The chess piece's image path.
+     */
     public String getImgPath() {
         return this.chessImgPath;
     }
 
+    /**
+     * @return The chess piece's possible moves.
+     */
     public ArrayList<int[]> getPossibleMovesArray() {
         return this.possibleMovesArray;
     }
 
+    /**
+     * This method is supposed to be abstract as it will be overridden in the subclasses.
+     * However, JSON cannot support abstract class.
+     * @return null
+     */
     public ArrayList<int[]> generatePossibleMoves() {
         return null;
     }
 
+    /**
+     * This is the method that flips the position of the chess piece when a successful chess move is detected.
+     * @author Chan Jin Xuan
+     */
     @Override
-    //Chan Jin Xuan
-    //Flip the position of this single chess when a successful chess move is detected
     public void flipPosition() {
         this.chessPositionX = 6 - chessPositionX;
         this.chessPositionY = 7 - chessPositionY;
@@ -181,17 +243,11 @@ public class ChessPiece implements Chess, Observable {
     }
 
     @Override
-    public void addObserver(Observer observer) {
-
-    }
+    public void addObserver(Observer observer) { }
 
     @Override
-    public void removeObserver(Observer observer) {
-
-    }
+    public void removeObserver(Observer observer) { }
 
     @Override
-    public void notifyObserver() {
-
-    }
+    public void notifyObserver() { }
 }

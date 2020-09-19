@@ -6,6 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 
+/**
+ * This is the Controller class that acts as the interface between the class pieces and the UI components
+ * It processes the logic requests in the main menu screen and during gameplay.
+ *
+ * @author Lau Yee Keen Calvin
+ */
 public class Controller {
 
     private MainUI mainUI;
@@ -15,25 +21,43 @@ public class Controller {
     private int[][] currentSelectedPosition = {{-1, -1}};
     private JButton[][] chessHolder;
 
+    /**
+     * This is the constructor that passes the initialized mainUI and viewHolder to its attributes.
+     * @param mainUI The initialized mainUI object.
+     * @param viewHolder The view holder.
+     * @author Lau Yee Keen Calvin
+     */
     Controller(MainUI mainUI, JFrame viewHolder) {
         this.mainUI = mainUI;
         this.viewHolder = viewHolder;
     }
 
+    /**
+     * @param x The x coordinate of position to set.
+     * @param y The y coordinate of position to set.
+     */
     public void setCurrentSelectedPosition(int x, int y) {
         currentSelectedPosition[0][0] = x;
         currentSelectedPosition[0][1] = y;
     }
 
+    /**
+     * @return The current selected position.
+     */
     public int[][] getCurrentSelectedPosition() {
         return currentSelectedPosition;
     }
 
+    /**
+     * @param x The x coordinate of position to set.
+     * @param y The y coordinate of position to set.
+     */
     public void setChessPosition(int x, int y) {
         board.moveChess(getCurrentSelectedPosition()[0][0], getCurrentSelectedPosition()[0][1], x, y);
         refreshGameBoard();
     }
 
+    //@author Lau Yee Keen Calvin
     private void refreshGameBoard() {
         setCurrentSelectedPosition(-1, -1);
         for (JButton[] jButtons : chessHolder) {
@@ -63,6 +87,10 @@ public class Controller {
         }
     }
 
+    /**
+     * This is the method that starts a new game and prompts for the new players' names.
+     * @author Lau Yee Keen Calvin
+     */
     public void createNewGame() {
         String player1 = mainUI.displayDialog(viewHolder, 1);
         String player2;
@@ -78,11 +106,19 @@ public class Controller {
         }
     }
 
+    /**
+     * This is the method that starts a new game as a game option during gameplay.
+     * @author Lau Yee Keen Calvin
+     */
     public void restartGame() {
         setCurrentSelectedPosition(-1, -1);
         createNewGame();
     }
 
+    /**
+     * This is the method that continues a saved game in the main menu.
+     * @author Lau Yee Keen Calvin
+     */
     public void continueGame() {
         try {
             board.loadState();
@@ -94,6 +130,10 @@ public class Controller {
         }
     }
 
+    /**
+     * This is the method that calls the Board class to save the current board state.
+     * @author Lau Yee Keen Calvin
+     */
     public void saveState() {
         try {
             board.saveState();
@@ -102,10 +142,22 @@ public class Controller {
         }
     }
 
+    /**
+     * This is the method that returns the chess piece's image based on the position.
+     * @param x The x coordinate position.
+     * @param y The y coordinate position.
+     * @return The chess piece's image.
+     * @author Lau Yee Keen Calvin
+     */
     public BufferedImage getChessImg(int x, int y) {
         return board.getChessPieceImg(x, y);
     }
 
+    /**
+     * This is the method that displays the help box's message.
+     * @return The help box's message.
+     * @author Muhammad Hidayat Bin Jauhari
+     */
     public String getHelp() {
         return "Sun          - It can only move one step in any " +
                 "direction. The game\n                   ends when the Sun is captured by the other side.\n" +
@@ -123,6 +175,11 @@ public class Controller {
                 "the\n                    opposite direction.\n";
     }
 
+    /**
+     * This is the method that displays the winning player.
+     * @param viewHolder The view holder.
+     * @author Lau Yee Keen Calvin
+     */
     public void checkGameWinner(JFrame viewHolder) {
 
         if (board.getWinner() != null) {
@@ -140,14 +197,30 @@ public class Controller {
         }
     }
 
+    /**
+     * This is the method that returns the player that is currently in turn.
+     * @return The name of the player that is currently in turn.
+     * @author Lau Yee Keen Calvin
+     */
     public String getCurrentPlayerTurn() {
         return board.getCurrentPlayerName();
     }
 
+    /**
+     * This is the method that returns the possible moves by a chess piece in a certain position.
+     * @param x The x coordinate position.
+     * @param y The y coordinate position.
+     * @return The possible moves.
+     * @author Lau Yee Keen Calvin
+     */
     public int[][] getPossibleMoves(int x, int y) {
         return board.getPossibleMoves(x, y);
     }
 
+    /**
+     * This is the method that delete all existing save files.
+     * @author Lau Yee Keen Calvin
+     */
     public void deleteAllSaved() {
         try {
             fileManager.deleteAllSaveFile();
