@@ -9,7 +9,7 @@ import java.util.Iterator;
  * The ChessPiece class defines the properties of a chess piece.
  *
  * @author Muhammad Hidayat Bin Jauhari
- * @author Mohammad Faris Bin Harunasir
+ * @author Mohamad Faris Bin Harunasir
  */
 public class ChessPiece implements Chess, Observable {
     private static int accumulator;

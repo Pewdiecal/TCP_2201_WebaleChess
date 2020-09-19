@@ -200,7 +200,6 @@ public class Controller {
     /**
      * This is the method that returns the player that is currently in turn.
      * @return The name of the player that is currently in turn.
-     * @author Lau Yee Keen Calvin
      */
     public String getCurrentPlayerTurn() {
         return board.getCurrentPlayerName();
@@ -211,7 +210,6 @@ public class Controller {
      * @param x The x coordinate position.
      * @param y The y coordinate position.
      * @return The possible moves.
-     * @author Lau Yee Keen Calvin
      */
     public int[][] getPossibleMoves(int x, int y) {
         return board.getPossibleMoves(x, y);

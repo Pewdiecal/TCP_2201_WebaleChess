@@ -1,14 +1,33 @@
 import java.util.ArrayList;
 
-// class for Sun chess that inherited from ChessPiece
+/**
+ * The Sun class defines the properties of a Sun chess piece.
+ *
+ * @author Muhammad Hidayat Bin Jauhari
+ * @author Mohamad Faris Bin Harunasir
+ */
 public class Sun extends ChessPiece {
 
+    /**
+     * This is the constructor that passes the arrow chess piece's name, image, position and owner to its attributes.
+     * @param chessName The chess piece's name.
+     * @param chessImg The chess piece's image path.
+     * @param chessPositionX The chess piece's X coordinate position.
+     * @param chessPositionY The chess piece's Y coordinate position.
+     * @param chessOwner The chess piece's owner.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     Sun(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);
     }
 
-    // Muhammad Hidayat Bin Jauhari, Mohamad Faris Bin Harunasir
-    // generate the possible moves for the selected sun
+    /**
+     * This is the method that will return the possible moves for the selected Sun chess piece.
+     * @return The possible moves.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     @Override
     public ArrayList<int[]> generatePossibleMoves() {
         int x = getChessPositionX();
@@ -16,12 +35,12 @@ public class Sun extends ChessPiece {
 
         super.getPossibleMovesArray().clear();
 
-        // move up down left right
+        //Move up down left right
         if(getChessOwner().getPlayerTurn()) {
             if (y - 1 >= 0) { //Move up
                 int[] tempRef = new int[]{x, y - 1};
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 super.getPossibleMovesArray().add(tempRef);
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == x
@@ -66,7 +85,7 @@ public class Sun extends ChessPiece {
                 }
             }
 
-            // move vertically
+            //Move vertically
             if (x + 1 <= 6 && y - 1 >= 0) {
                 int[] tempRef = new int[]{x + 1, y - 1};
                 super.getPossibleMovesArray().add(tempRef);

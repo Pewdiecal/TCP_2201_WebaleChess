@@ -1,14 +1,33 @@
 import java.util.ArrayList;
 
-// class for Plus chess that inherited from ChessPiece
+/**
+ * The Plus class defines the properties of a Plus chess piece.
+ *
+ * @author Muhammad Hidayat Bin Jauhari
+ * @author Mohamad Faris Bin Harunasir
+ */
 public class Plus extends ChessPiece {
 
+    /**
+     * This is the constructor that passes the arrow chess piece's name, image, position and owner to its attributes.
+     * @param chessName The chess piece's name.
+     * @param chessImg The chess piece's image path.
+     * @param chessPositionX The chess piece's X coordinate position.
+     * @param chessPositionY The chess piece's Y coordinate position.
+     * @param chessOwner The chess piece's owner.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     Plus(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);
     }
 
-    // Muhammad Hidayat Bin Jauhari, Mohamad Faris Bin Harunasir
-    // generate the possible moves for the selected plus
+    /**
+     * This is the method that will return the possible moves for the selected Plus chess piece.
+     * @return The possible moves.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     @Override
     public ArrayList<int[]> generatePossibleMoves() {
         int x = getChessPositionX();
@@ -27,12 +46,12 @@ public class Plus extends ChessPiece {
         super.getPossibleMovesArray().clear();
 
         if(getChessOwner().getPlayerTurn()) {
-            //moving up
+            //Moving up
             while (yU >= 0 && !stopU) {
                 int[] tempRef = new int[]{x, yU};
                 super.getPossibleMovesArray().add(tempRef);
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == x
                             && chessPiece.getChessPositionY() == yU
@@ -50,12 +69,12 @@ public class Plus extends ChessPiece {
                 yU--;
             }
 
-            //moving down
+            //Moving down
             while (yD <= 7 && !stopD) {
                 int[] tempRef = new int[]{x, yD};
                 super.getPossibleMovesArray().add(tempRef);
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == x
                             && chessPiece.getChessPositionY() == yD
@@ -73,12 +92,12 @@ public class Plus extends ChessPiece {
                 yD++;
             }
 
-            //moving right
+            //Moving right
             while (xR <= 6 && !stopR) {
                 int[] tempRef = new int[]{xR, y};
                 super.getPossibleMovesArray().add(tempRef);
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == xR
                             && chessPiece.getChessPositionY() == y
@@ -96,12 +115,12 @@ public class Plus extends ChessPiece {
                 xR++;
             }
 
-            //moving left
+            //Moving left
             while (xL >= 0 && !stopL) {
                 int[] tempRef = new int[]{xL, y};
                 super.getPossibleMovesArray().add(tempRef);
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == xL
                             && chessPiece.getChessPositionY() == y

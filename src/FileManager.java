@@ -7,13 +7,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * This is the MainUI class that is responsible for displaying the main menu UI and the gameplay UI.
+ * This is the FileManager class that handles the saving and loading of a game state.
  *
  * @author Lau Yee Keen Calvin
  */
 public class FileManager {
     private ChessCollection chessCollection;
 
+    /**
+     * This is an overloaded constructor that passes the initialized chessCollection to its attributes.
+     * @param chessCollection The chess collection.
+     * @author Lau Yee Keen Calvin
+     */
     FileManager(ChessCollection chessCollection) {
         this.chessCollection = chessCollection;
     }
@@ -21,6 +26,10 @@ public class FileManager {
     FileManager() {
     }
 
+    /**
+     * This is the method that saves the current game state into a file.
+     * @author Lau Yee Keen Calvin
+     */
     public void writeToFile() throws IOException {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -39,9 +48,13 @@ public class FileManager {
         outputStream.write(strToBytes);
         outputStream.close();
 
-
     }
 
+    /**
+     * This is the method that loads a previously saved game state.
+     * @return The chess collection of chess pieces.
+     * @author Lau Yee Keen Calvin
+     */
     public ChessCollection loadSavedFile() throws FileNotFoundException {
         Gson gson = new Gson();
         ArrayList<ChessPiece> tempList = new ArrayList<>();
@@ -96,6 +109,10 @@ public class FileManager {
         return chessCollection;
     }
 
+    /**
+     * This is the method that delete all the saved files.
+     * @author Lau Yee Keen Calvin
+     */
     public void deleteAllSaveFile() throws IOException, NoSuchFileException {
         Path path = Paths.get("savedGameFile/savedProgress.txt");
         Files.delete(path);

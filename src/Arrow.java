@@ -1,13 +1,33 @@
 import java.util.ArrayList;
 
-// class for Arrow chess that inherited from ChessPiece
+/**
+ * The Arrow class defines the properties of an Arrow chess piece.
+ *
+ * @author Muhammad Hidayat Bin Jauhari
+ * @author Mohammad Faris Bin Harunasir
+ */
 public class Arrow extends ChessPiece {
+
+    /**
+     * This is the constructor that passes the arrow chess piece's name, image, position and owner to its attributes.
+     * @param chessName The chess piece's name.
+     * @param chessImg The chess piece's image path.
+     * @param chessPositionX The chess piece's X coordinate position.
+     * @param chessPositionY The chess piece's Y coordinate position.
+     * @param chessOwner The chess piece's owner.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     Arrow(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);
     }
 
-    // Muhammad Hidayat Bin Jauhari, Mohamad Faris Bin Harunasir
-    // generate the possible moves for the selected arrow
+    /**
+     * This is the method that will return the possible moves for the selected Arrow chess piece.
+     * @return The possible moves.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     @Override
     public ArrayList<int[]> generatePossibleMoves() {
         int x = getChessPositionX();
@@ -19,7 +39,7 @@ public class Arrow extends ChessPiece {
 
         if(getChessOwner().getPlayerTurn()) {
             if (!getArrowRotation()) {
-                // moving 1 or 2 steps upwards
+                //Moving 1 or 2 steps upwards
                 for (int i = 1; i < 3; i++) {
                     if (y - i >= 0 && !stopMove) {
                         int[] tempRef = new int[]{x, y - i};
@@ -42,7 +62,7 @@ public class Arrow extends ChessPiece {
                     }
                 }
             } else if (getArrowRotation()) {
-                // moving 1 or 2 steps downwards if rotated
+                //Moving 1 or 2 steps downwards if rotated
                 for (int i = 1; i < 3; i++) {
                     if (y + i <= 7 && !stopMove) {
                         int[] tempRef = new int[]{x, y + i};
@@ -65,9 +85,6 @@ public class Arrow extends ChessPiece {
                 }
             }
         }
-
         return super.getPossibleMovesArray();
-
     }
-
 }

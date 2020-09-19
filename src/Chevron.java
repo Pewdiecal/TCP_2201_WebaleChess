@@ -1,13 +1,33 @@
 import java.util.ArrayList;
 
-// class for Chevron chess that inherited from ChessPiece
+/**
+ * The Chevron class defines the properties of a Chevron chess piece.
+ *
+ * @author Muhammad Hidayat Bin Jauhari
+ * @author Mohamad Faris Bin Harunasir
+ */
 public class Chevron extends ChessPiece {
+
+    /**
+     * This is the constructor that passes the arrow chess piece's name, image, position and owner to its attributes.
+     * @param chessName The chess piece's name.
+     * @param chessImg The chess piece's image path.
+     * @param chessPositionX The chess piece's X coordinate position.
+     * @param chessPositionY The chess piece's Y coordinate position.
+     * @param chessOwner The chess piece's owner.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     Chevron(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);
     }
 
-    // Muhammad Hidayat Bin Jauhari, Mohamad Faris Bin Harunasir
-    // generate the possible moves for the selected chevron
+    /**
+     * This is the method that will return the possible moves for the selected Chevron chess piece.
+     * @return The possible moves.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     @Override
     public ArrayList<int[]> generatePossibleMoves() {
         int x = getChessPositionX();
@@ -106,7 +126,6 @@ public class Chevron extends ChessPiece {
             }
 
         }
-
         return super.getPossibleMovesArray();
     }
 }

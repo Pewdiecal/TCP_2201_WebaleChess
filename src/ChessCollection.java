@@ -1,23 +1,35 @@
 import java.util.ArrayList;
 
 //class for a collection of ChessPiece in a list
+/**
+ * This is the ChessCollection class that acts as a collection of ChessPiece in a list.
+ *
+ * @author Chan Jin Xuan
+ */
 public class ChessCollection implements Chess {
+
     private ArrayList<ChessPiece> chessPieces = new ArrayList<>();
 
-    //add all ChessPiece
+    /**
+     * This is the method that adds and initializes all the chess pieces.
+     * @param chessPiece The chess piece object.
+     * @author Chan Jin Xuan
+     */
     public void addChess(ChessPiece chessPiece) {
         chessPieces.add(chessPiece);
     }
 
-
+    /**
+     * @return The list of chess pieces.
+     */
     public ArrayList<ChessPiece> getChessPiece() {
         return chessPieces;
     }
 
-    //Chan Jin Xuan
-    //Flip all position of the chess by iterating it through all of the elements in the ArrayList
-    //While its iterating through the list, just call ChessPiece.flipPosition() since flipPosition in the
-    //chessPiece is implemented to flip a single chess
+    /**
+     * This is the method that flips the position of the chess pieces on the board.
+     * @author Chan Jin Xuan
+     */
     @Override
     public void flipPosition() {
         for(ChessPiece chessPiece: chessPieces){
@@ -25,8 +37,10 @@ public class ChessCollection implements Chess {
         }
     }
 
-    //Chan Jin Xuan
-    //update the list after every valid movement
+    /**
+     * This is the method that updates the latest list of chess pieces.
+     * @author Chan Jin Xuan
+     */
     public void updateList(){
         ArrayList<ChessPiece> temp = new ArrayList<>();
         for (int i = 0; i < chessPieces.size(); i++){

@@ -158,7 +158,6 @@ public class Board implements Observer {
 
     /**
      * @return The winning player.
-     * @author Chan Jin Xuan
      */
     public Player getWinner() {
         return winner;
@@ -166,7 +165,6 @@ public class Board implements Observer {
 
     /**
      * This is the method that resets the winning player to null.
-     * @author Chan Jin Xuan
      */
     public void nullifyWinner() {
         winner = null;

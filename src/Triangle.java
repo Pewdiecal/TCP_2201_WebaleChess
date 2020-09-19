@@ -1,14 +1,33 @@
 import java.util.ArrayList;
 
-// class for Triangle chess that inherited from ChessPiece
+/**
+ * The Triangle class defines the properties of an Triangle chess piece.
+ *
+ * @author Muhammad Hidayat Bin Jauhari
+ * @author Mohamad Faris Bin Harunasir
+ */
 public class Triangle extends ChessPiece {
 
+    /**
+     * This is the constructor that passes the arrow chess piece's name, image, position and owner to its attributes.
+     * @param chessName The chess piece's name.
+     * @param chessImg The chess piece's image path.
+     * @param chessPositionX The chess piece's X coordinate position.
+     * @param chessPositionY The chess piece's Y coordinate position.
+     * @param chessOwner The chess piece's owner.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     Triangle(String chessName, String chessImg, int chessPositionX, int chessPositionY, Player chessOwner) {
         super(chessName, chessImg, chessPositionX, chessPositionY, chessOwner);
     }
 
-    // Muhammad Hidayat Bin Jauhari, Mohammad Faris Bin Harunasir
-    // generate the possible moves for the selected triangle
+    /**
+     * This is the method that will return the possible moves for the selected Triangle chess piece.
+     * @return The possible moves.
+     * @author Muhammad Hidayat Bin Jauhari
+     * @author Mohamad Faris Bin Harunasir
+     */
     @Override
     public ArrayList<int[]> generatePossibleMoves() {
 
@@ -34,7 +53,7 @@ public class Triangle extends ChessPiece {
                 int[] tempRef = new int[]{xDR, yDR};
                 super.getPossibleMovesArray().add(tempRef);
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == xDR
                             && chessPiece.getChessPositionY() == yDR
@@ -58,7 +77,7 @@ public class Triangle extends ChessPiece {
                 int[] tempRef = new int[]{xUL, yUL};
                 super.getPossibleMovesArray().add(tempRef);
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == xUL
                             && chessPiece.getChessPositionY() == yUL
@@ -83,7 +102,7 @@ public class Triangle extends ChessPiece {
                 int[] tempRef = new int[]{xDL, yDL};
                 super.getPossibleMovesArray().add(tempRef);
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == xDL
                             && chessPiece.getChessPositionY() == yDL
@@ -107,7 +126,7 @@ public class Triangle extends ChessPiece {
                 int[] tempRef = new int[]{xUR, yUR};
                 super.getPossibleMovesArray().add(tempRef);
 
-                // allows moving to empty space & prevents eating own chess piece
+                //Allows moving to empty space & prevents eating own chess piece
                 for (ChessPiece chessPiece : super.getBoard().getChessList().getChessPiece()) {
                     if (chessPiece.getChessPositionX() == xUR
                             && chessPiece.getChessPositionY() == yUR
@@ -128,5 +147,4 @@ public class Triangle extends ChessPiece {
         }
         return super.getPossibleMovesArray();
     }
-
 }
