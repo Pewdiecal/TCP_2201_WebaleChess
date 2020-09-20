@@ -10,8 +10,9 @@ public class Player {
 
     /**
      * This is the constructor that passes the player's name and ID to its attributes.
+     *
      * @param playerName The chess piece's name.
-     * @param playerID The chess piece's image path.
+     * @param playerID   The chess piece's image path.
      * @author Mohamad Faris Bin Harunasir
      */
     Player(String playerName, int playerID) {

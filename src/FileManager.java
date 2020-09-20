@@ -1,4 +1,6 @@
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -16,6 +18,7 @@ public class FileManager {
 
     /**
      * This is an overloaded constructor that passes the initialized chessCollection to its attributes.
+     *
      * @param chessCollection The chess collection.
      * @author Lau Yee Keen Calvin
      */
@@ -28,6 +31,7 @@ public class FileManager {
 
     /**
      * This is the method that saves the current game state into a file.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void writeToFile() throws IOException {
@@ -52,6 +56,7 @@ public class FileManager {
 
     /**
      * This is the method that loads a previously saved game state.
+     *
      * @return The chess collection of chess pieces.
      * @author Lau Yee Keen Calvin
      */
@@ -111,6 +116,7 @@ public class FileManager {
 
     /**
      * This is the method that delete all the saved files.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void deleteAllSaveFile() throws IOException, NoSuchFileException {

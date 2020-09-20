@@ -10,11 +10,12 @@ public class Triangle extends ChessPiece {
 
     /**
      * This is the constructor that passes the arrow chess piece's name, image, position and owner to its attributes.
-     * @param chessName The chess piece's name.
-     * @param chessImg The chess piece's image path.
+     *
+     * @param chessName      The chess piece's name.
+     * @param chessImg       The chess piece's image path.
      * @param chessPositionX The chess piece's X coordinate position.
      * @param chessPositionY The chess piece's Y coordinate position.
-     * @param chessOwner The chess piece's owner.
+     * @param chessOwner     The chess piece's owner.
      * @author Muhammad Hidayat Bin Jauhari
      * @author Mohamad Faris Bin Harunasir
      */
@@ -24,6 +25,7 @@ public class Triangle extends ChessPiece {
 
     /**
      * This is the method that will return the possible moves for the selected Triangle chess piece.
+     *
      * @return The possible moves.
      * @author Muhammad Hidayat Bin Jauhari
      * @author Mohamad Faris Bin Harunasir
@@ -47,7 +49,7 @@ public class Triangle extends ChessPiece {
 
         super.getPossibleMovesArray().clear();
 
-        if(getChessOwner().getPlayerTurn()) {
+        if (getChessOwner().getPlayerTurn()) {
             //Down-Right
             while (xDR < 7 && yDR < 8 && !stopDR) {
                 int[] tempRef = new int[]{xDR, yDR};

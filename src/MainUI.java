@@ -16,6 +16,7 @@ public class MainUI {
 
     /**
      * This is the main method that initializes the menu screen.
+     *
      * @param args Unused.
      * @author Lau Yee Keen Calvin
      */
@@ -25,6 +26,7 @@ public class MainUI {
 
     /**
      * This is the method that initializes the controller and the layout for the main menu.
+     *
      * @param mainUI The mainUI object to be initialized.
      * @author Lau Yee Keen Calvin
      */
@@ -84,6 +86,7 @@ public class MainUI {
 
     /**
      * This is the method that initializes and inflates the gameplay UI.
+     *
      * @return The chess holders.
      * @author Lau Yee Keen Calvin
      */
@@ -250,8 +253,9 @@ public class MainUI {
 
     /**
      * This is the method that displays the "enter player's name" dialog.
+     *
      * @param viewHolder The view holder.
-     * @param i The player number.
+     * @param i          The player number.
      * @return The "enter player's name" dialog.
      * @author Lau Yee Keen Calvin
      */
@@ -261,6 +265,7 @@ public class MainUI {
 
     /**
      * This is the method that prints out the instructions on how each of the pieces move.
+     *
      * @param viewHolder The view holder.
      * @author Muhammad Hidayat Bin Jauhari
      */
@@ -270,6 +275,7 @@ public class MainUI {
 
     /**
      * This is the method that displays a message when no previous game files are found.
+     *
      * @param viewHolder The view holder.
      * @author Lau Yee Keen Calvin
      */

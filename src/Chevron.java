@@ -10,11 +10,12 @@ public class Chevron extends ChessPiece {
 
     /**
      * This is the constructor that passes the arrow chess piece's name, image, position and owner to its attributes.
-     * @param chessName The chess piece's name.
-     * @param chessImg The chess piece's image path.
+     *
+     * @param chessName      The chess piece's name.
+     * @param chessImg       The chess piece's image path.
      * @param chessPositionX The chess piece's X coordinate position.
      * @param chessPositionY The chess piece's Y coordinate position.
-     * @param chessOwner The chess piece's owner.
+     * @param chessOwner     The chess piece's owner.
      * @author Muhammad Hidayat Bin Jauhari
      * @author Mohamad Faris Bin Harunasir
      */
@@ -24,6 +25,7 @@ public class Chevron extends ChessPiece {
 
     /**
      * This is the method that will return the possible moves for the selected Chevron chess piece.
+     *
      * @return The possible moves.
      * @author Muhammad Hidayat Bin Jauhari
      * @author Mohamad Faris Bin Harunasir
@@ -35,7 +37,7 @@ public class Chevron extends ChessPiece {
 
         super.getPossibleMovesArray().clear();
 
-        if(getChessOwner().getPlayerTurn()) {
+        if (getChessOwner().getPlayerTurn()) {
             if (x + 1 <= 6 && y - 2 >= 0) {
                 int[] tempRef = new int[]{x + 1, y - 2};
                 super.getPossibleMovesArray().add(tempRef);

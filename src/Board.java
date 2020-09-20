@@ -29,6 +29,7 @@ public class Board implements Observer {
 
     /**
      * This is the singleton design pattern where there is just a board instance created during the game.
+     *
      * @return The board instance.
      */
     public static Board getInstance() {
@@ -40,6 +41,7 @@ public class Board implements Observer {
 
     /**
      * This is the method that saves the current state of the game
+     *
      * @author Lau Yee Keen Calvin
      */
     public void saveState() throws IOException {
@@ -49,6 +51,7 @@ public class Board implements Observer {
 
     /**
      * This is the method that loads the saved game file from directory.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void loadState() throws FileNotFoundException { //players turn needs to be set asap
@@ -74,6 +77,7 @@ public class Board implements Observer {
 
     /**
      * This is the method that initializes the chess pieces in chessList during the start of a new game.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void reloadNewState() {
@@ -116,10 +120,11 @@ public class Board implements Observer {
 
     /**
      * This is the method that handles a chess piece moving on the board.
+     *
      * @param fromX The x coordinate position of chess piece to be moved.
      * @param fromY The y coordinate position of chess piece to be moved.
-     * @param toX The x coordinate position that the chess piece will move to.
-     * @param toY The y coordinate position that the chess piece will move to.
+     * @param toX   The x coordinate position that the chess piece will move to.
+     * @param toY   The y coordinate position that the chess piece will move to.
      * @author Nicholas Chee Jian Shen
      * @author Chan Jin Xuan
      */
@@ -127,7 +132,7 @@ public class Board implements Observer {
 
         boolean pass = true;
         for (int i = 0; i < chessList.getChessPiece().size(); i++) {
-            if(pass) {
+            if (pass) {
                 if (chessList.getChessPiece().get(i).getChessPositionX() == fromX
                         && chessList.getChessPiece().get(i).getChessPositionY() == fromY) {
                     //Confirm is the chess piece we want
@@ -137,7 +142,7 @@ public class Board implements Observer {
                                 if (chessList.getChessPiece().get(j).getChessPositionX() == toX
                                         && chessList.getChessPiece().get(j).getChessPositionY() == toY) {
                                     chessList.getChessPiece().get(j).setIsOnBoard(false);
-                                    if(chessList.getChessPiece().get(j).getChessName().contains("Sun")){
+                                    if (chessList.getChessPiece().get(j).getChessName().contains("Sun")) {
                                         //If the "Sun" is dead the chessOwner of the chess which ate the sun wins
                                         winner = chessList.getChessPiece().get(i).getChessOwner();
                                     }
@@ -152,7 +157,9 @@ public class Board implements Observer {
                         }
                     }
                 }
-            } else { break; }
+            } else {
+                break;
+            }
         }
     }
 
@@ -172,6 +179,7 @@ public class Board implements Observer {
 
     /**
      * This is the method that will flip the board and change the players' turn when a chess move is successful.
+     *
      * @author Nicholas Chee Jian Shen
      */
     @Override
@@ -184,8 +192,9 @@ public class Board implements Observer {
 
     /**
      * This is the method that creates and assigns each player a turn.
+     *
      * @param playerName the player's name.
-     * @param index The player's index number.
+     * @param index      The player's index number.
      * @author Chan Jin Xuan
      */
     public void addPlayer(String playerName, int index) {
@@ -197,6 +206,7 @@ public class Board implements Observer {
 
     /**
      * This is the method that returns the current player's name.
+     *
      * @return Current player's name.
      * @author Chan Jin Xuan
      */
@@ -211,6 +221,7 @@ public class Board implements Observer {
 
     /**
      * This is the method that returns the actual image of the chess to be displayed on the JButton.
+     *
      * @param x The x coordinate position.
      * @param y The y coordinate position.
      * @return The chess piece image.
@@ -227,6 +238,7 @@ public class Board implements Observer {
 
     /**
      * This is the method that returns the lists of possible moves to the controller to show the green boxes.
+     *
      * @param fromX The x coordinate position of the chess piece.
      * @param fromY The y coordinate position of the chess piece.
      * @return The possible moves.
@@ -235,8 +247,8 @@ public class Board implements Observer {
      */
     public int[][] getPossibleMoves(int fromX, int fromY) {
         int[][] possibleMoves = new int[0][];
-        for (ChessPiece chessPiece : chessList.getChessPiece()){ //Check every chess piece
-            if(chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY){
+        for (ChessPiece chessPiece : chessList.getChessPiece()) { //Check every chess piece
+            if (chessPiece.getChessPositionX() == fromX && chessPiece.getChessPositionY() == fromY) {
                 //Confirm is the chess piece we want
                 return chessPiece.generatePossibleMoves().toArray(possibleMoves);
             }

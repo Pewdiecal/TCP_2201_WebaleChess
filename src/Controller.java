@@ -23,7 +23,8 @@ public class Controller {
 
     /**
      * This is the constructor that passes the initialized mainUI and viewHolder to its attributes.
-     * @param mainUI The initialized mainUI object.
+     *
+     * @param mainUI     The initialized mainUI object.
      * @param viewHolder The view holder.
      * @author Lau Yee Keen Calvin
      */
@@ -89,6 +90,7 @@ public class Controller {
 
     /**
      * This is the method that starts a new game and prompts for the new players' names.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void createNewGame() {
@@ -108,6 +110,7 @@ public class Controller {
 
     /**
      * This is the method that starts a new game as a game option during gameplay.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void restartGame() {
@@ -117,6 +120,7 @@ public class Controller {
 
     /**
      * This is the method that continues a saved game in the main menu.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void continueGame() {
@@ -132,6 +136,7 @@ public class Controller {
 
     /**
      * This is the method that calls the Board class to save the current board state.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void saveState() {
@@ -144,6 +149,7 @@ public class Controller {
 
     /**
      * This is the method that returns the chess piece's image based on the position.
+     *
      * @param x The x coordinate position.
      * @param y The y coordinate position.
      * @return The chess piece's image.
@@ -155,6 +161,7 @@ public class Controller {
 
     /**
      * This is the method that displays the help box's message.
+     *
      * @return The help box's message.
      * @author Muhammad Hidayat Bin Jauhari
      */
@@ -177,6 +184,7 @@ public class Controller {
 
     /**
      * This is the method that displays the winning player.
+     *
      * @param viewHolder The view holder.
      * @author Lau Yee Keen Calvin
      */
@@ -199,6 +207,7 @@ public class Controller {
 
     /**
      * This is the method that returns the player that is currently in turn.
+     *
      * @return The name of the player that is currently in turn.
      */
     public String getCurrentPlayerTurn() {
@@ -207,6 +216,7 @@ public class Controller {
 
     /**
      * This is the method that returns the possible moves by a chess piece in a certain position.
+     *
      * @param x The x coordinate position.
      * @param y The y coordinate position.
      * @return The possible moves.
@@ -217,6 +227,7 @@ public class Controller {
 
     /**
      * This is the method that delete all existing save files.
+     *
      * @author Lau Yee Keen Calvin
      */
     public void deleteAllSaved() {

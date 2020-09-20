@@ -32,11 +32,12 @@ public class ChessPiece implements Chess, Observable {
 
     /**
      * This is the constructor that passes the chess piece's name, image, position and owner to its attributes.
-     * @param chessName The chess piece's name.
-     * @param chessImgPath The chess piece's image path.
+     *
+     * @param chessName      The chess piece's name.
+     * @param chessImgPath   The chess piece's image path.
      * @param chessPositionX The chess piece's X coordinate position.
      * @param chessPositionY The chess piece's Y coordinate position.
-     * @param chessOwner The chess piece's owner.
+     * @param chessOwner     The chess piece's owner.
      * @author Lau Yee Keen Calvin
      */
     ChessPiece(String chessName, String chessImgPath, int chessPositionX, int chessPositionY, Player chessOwner) {
@@ -109,6 +110,7 @@ public class ChessPiece implements Chess, Observable {
     /**
      * This is the method that moves the chess piece and
      * counts the movement made by the players to change the triangles and pluses.
+     *
      * @param x The x coordinate position.
      * @param y The y coordinate position.
      * @author Muhammad Hidayat Bin Jauhari
@@ -182,6 +184,7 @@ public class ChessPiece implements Chess, Observable {
 
     /**
      * This is the method that changes the chess piece's image to a rotated version or vice versa.
+     *
      * @author Nicholas Chee Jian Shen
      */
     public void rotateImg() {
@@ -191,11 +194,10 @@ public class ChessPiece implements Chess, Observable {
 
         BufferedImage rotated = new BufferedImage(w, h, bufferedImage.getType());
 
-        if(!chessImgPath.contains("Rev")){ //If the image is not rotated
-            chessImgPath = chessImgPath.substring(0, chessImgPath.length()-4) + "Rev.png";
-        }
-        else{ //If the image is rotated
-            chessImgPath = chessImgPath.substring(0, chessImgPath.length()-7) + ".png";
+        if (!chessImgPath.contains("Rev")) { //If the image is not rotated
+            chessImgPath = chessImgPath.substring(0, chessImgPath.length() - 4) + "Rev.png";
+        } else { //If the image is rotated
+            chessImgPath = chessImgPath.substring(0, chessImgPath.length() - 7) + ".png";
         }
 
         try {
@@ -225,6 +227,7 @@ public class ChessPiece implements Chess, Observable {
     /**
      * This method is supposed to be abstract as it will be overridden in the subclasses.
      * However, JSON cannot support abstract class.
+     *
      * @return null
      */
     public ArrayList<int[]> generatePossibleMoves() {
@@ -233,6 +236,7 @@ public class ChessPiece implements Chess, Observable {
 
     /**
      * This is the method that flips the position of the chess piece when a successful chess move is detected.
+     *
      * @author Chan Jin Xuan
      */
     @Override
@@ -243,11 +247,14 @@ public class ChessPiece implements Chess, Observable {
     }
 
     @Override
-    public void addObserver(Observer observer) { }
+    public void addObserver(Observer observer) {
+    }
 
     @Override
-    public void removeObserver(Observer observer) { }
+    public void removeObserver(Observer observer) {
+    }
 
     @Override
-    public void notifyObserver() { }
+    public void notifyObserver() {
+    }
 }
