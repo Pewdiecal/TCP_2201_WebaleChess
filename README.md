@@ -1,12 +1,12 @@
 # TCP_2201_WebaleChess
-Top classified project DO NOT SHARE
+A mini chess game written in Java.
 
-## How to run in IntelliJ
-1. Open IntelliJ.
-2. Goto upper right coner, look for "Project Structure" button, click that.
-3. Inside the project structure screen, on ur left side, click on "Modules".
-4. On ur right side, you'll see "Source, Paths, Dependencies", click the "Dependencies" tab.
-5. Above the "Dependencies storage format" theres a "+" button, click that.
-6. Then select "1 JARs or directories".
-7. Locate the location of your project file, then navigate to "lib" folder and select/open the "gson-2.6.8.jar" file.
-8. Then click "OK".
+## Instructions to compile and run.
+### Windows/macOS/Linux/Unix-like OS
+- Make sure you have the latest version of java installed.
+
+1. Download and unzip the source code.
+2. ```cd``` to the extracted file's folder.
+3. Compile all the java files in the path folder with command ```javac -cp ".;./gson_2.8.6.jar" *.java``` (WINDOWS) or  ```javac -cp ".:./gson_2.8.6.jar" *.java``` (FOR LINUX AND MAC OS ONLY)
+4. Run the program with the command ```java -classpath "gson_2.8.6.jar;" MainUI ```(WINDOWS) or ```java -classpath "gson_2.8.6.jar:"``` (FOR LINUX AND MAC OS ONLY)
+
