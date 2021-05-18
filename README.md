@@ -1,4 +1,4 @@
-# TCP_2201_WebaleChess
+# WebaleChess
 A mini chess game written in Java.
 
 ## Instructions to compile and run.
